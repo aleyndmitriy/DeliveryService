@@ -1,0 +1,262 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Исходные файлы">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Файлы ресурсов">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Файлы заголовков\MainWindow">
+      <UniqueIdentifier>{b1b7d06e-ce89-4a17-a947-56d68c5b6fcc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\MainWindow">
+      <UniqueIdentifier>{8d5cc5cd-33a6-4a9c-93ac-1f4ece0dc0a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\MainWindow\Controller">
+      <UniqueIdentifier>{60a479c6-a118-491d-87dc-4f739c20644a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\MainWindow\Controller">
+      <UniqueIdentifier>{8c34ecb3-debb-4a36-873e-c3b8ffdc959b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\MainWindow\Presenter">
+      <UniqueIdentifier>{99b329ad-1f7d-49cb-8b80-7900fba1daf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\MainWindow\Presenter">
+      <UniqueIdentifier>{f5112245-0024-4894-a3a5-f3ff26c34a08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\MainWindow\Interactor">
+      <UniqueIdentifier>{73f2d1a1-443e-4403-8e95-b32b582ff60c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\MainWindow\Interactor">
+      <UniqueIdentifier>{1e595df2-b977-4ad6-9abb-0bb499df2354}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerSettings">
+      <UniqueIdentifier>{c6b61e06-f7e8-4cce-b131-334d1201f952}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerSettings\Presenter">
+      <UniqueIdentifier>{f4a7bcec-bbd9-401c-9a5b-15adffbff65b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerSettings\Controller">
+      <UniqueIdentifier>{ab5dbf3e-ba54-4b6f-9570-cffefce7fc08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerSettings">
+      <UniqueIdentifier>{0d341e32-e8c2-4310-8bff-191eb4bb57ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerSettings\Controller">
+      <UniqueIdentifier>{e18fc163-4fa1-40dc-8ea5-417c01ae4ff0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerSettings\Presenter">
+      <UniqueIdentifier>{9494f2eb-558a-4f61-ba10-ef3c519a725f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerSettings\Initializer">
+      <UniqueIdentifier>{1329e1b8-1c68-456d-be38-7097ac08357b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerSettings\Initializer">
+      <UniqueIdentifier>{e011dffe-48d8-4576-b215-925dc9ba94d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerSettings\SettingsData">
+      <UniqueIdentifier>{4ae6cda2-c7fd-40fd-894e-0457a1387f30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerSettings\SettingsData">
+      <UniqueIdentifier>{c20d27f9-b57c-4bbb-a316-5d16b3cfd7e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServer">
+      <UniqueIdentifier>{9af47a50-f03e-4abc-b71a-6e713150ca44}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServer">
+      <UniqueIdentifier>{0e53a012-e766-4b5b-b80a-ee74128c01df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings">
+      <UniqueIdentifier>{34ac13bf-c140-4afc-8086-28821f05c6bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\SettingsData">
+      <UniqueIdentifier>{74120f5f-4cc6-4970-b45d-f63a343eee77}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings">
+      <UniqueIdentifier>{3ac6343c-1c54-4dd8-9875-18f2ed543d37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\SettingsData">
+      <UniqueIdentifier>{a0cf4a8b-5d07-4e71-a483-9adacefb6bb8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\Controller">
+      <UniqueIdentifier>{66254dc3-3428-417d-a4f2-45bb2ce8345e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Controller">
+      <UniqueIdentifier>{70162a75-d170-4e19-bd6c-8755829d017f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Presenter">
+      <UniqueIdentifier>{df92a466-4441-4707-b38a-40f6743a0df6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\Presenter">
+      <UniqueIdentifier>{12e6c2ec-7fda-4f9f-a82b-936063eb9437}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\Initializer">
+      <UniqueIdentifier>{fdfdefd8-1b89-4745-8908-ea02ffb31ae3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Initializer">
+      <UniqueIdentifier>{2babe18a-5755-41fa-9d04-69998fc83ebb}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="InitMainWindow.cpp">
+      <Filter>Исходные файлы\MainWindow</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindowController.cpp">
+      <Filter>Исходные файлы\MainWindow\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="MainWindowPresenter.cpp">
+      <Filter>Исходные файлы\MainWindow\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="Utils.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerInteractor.cpp">
+      <Filter>Исходные файлы\MainWindow\Interactor</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerSettingsController.cpp">
+      <Filter>Исходные файлы\SoftingServerSettings\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerSettingsPresenter.cpp">
+      <Filter>Исходные файлы\SoftingServerSettings\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerSettingsInitializer.cpp">
+      <Filter>Исходные файлы\SoftingServerSettings\Initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerCertificateOwnSettings.cpp">
+      <Filter>Исходные файлы\SoftingServerSettings\SettingsData</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerCertificatePkiLocationSettings.cpp">
+      <Filter>Исходные файлы\SoftingServerSettings\SettingsData</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServer.cpp">
+      <Filter>Исходные файлы\SoftingServer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerUserPolicySettings.cpp">
+      <Filter>Исходные файлы\SoftingServerEndPointsSettings\SettingsData</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingServerEndPointSettings.cpp">
+      <Filter>Исходные файлы\SoftingServerEndPointsSettings\SettingsData</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingEndPointSettingsModuleInitializer.cpp">
+      <Filter>Исходные файлы\SoftingServerEndPointsSettings\Initializer</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingEndPointSettingsController.cpp">
+      <Filter>Исходные файлы\SoftingServerEndPointsSettings\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingEndPointSettingsPresenter.cpp">
+      <Filter>Исходные файлы\SoftingServerEndPointsSettings\Presenter</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Constants.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="InitMainWindow.h">
+      <Filter>Файлы заголовков\MainWindow</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindowController.h">
+      <Filter>Файлы заголовков\MainWindow\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindowPresenter.h">
+      <Filter>Файлы заголовков\MainWindow\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindowViewOutput.h">
+      <Filter>Файлы заголовков\MainWindow\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindowViewInput.h">
+      <Filter>Файлы заголовков\MainWindow\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Utils.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerInteractor.h">
+      <Filter>Файлы заголовков\MainWindow\Interactor</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerInteractorOutput.h">
+      <Filter>Файлы заголовков\MainWindow\Interactor</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerSettingsController.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingServerSettingsViewInput.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingServerSettingsViewOutput.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerSettingsPresenter.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerSettingsInitializer.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\Initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingServerSettingsModuleOutput.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerCertificateOwnSettings.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\SettingsData</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerCertificatePkiLocationSettings.h">
+      <Filter>Файлы заголовков\SoftingServerSettings\SettingsData</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServer.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerOutput.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerUserPolicySettings.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\SettingsData</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerEndPointSettings.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\SettingsData</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingEndPointSettingsModuleOutput.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingEndPointSettingsModuleInitializer.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingEndPointSettingsController.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingEndPointSettingsViewInput.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingEndPointSettingsViewOutput.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingEndPointSettingsPresenter.h">
+      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Presenter</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="DeliveryService.rc">
+      <Filter>Файлы ресурсов</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icons8_food_service.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="icons8_wheat.ico">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="linkicon.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

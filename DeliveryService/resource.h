@@ -1,0 +1,57 @@
+//{{NO_DEPENDENCIES}}
+// Включаемый файл, созданный в Microsoft Visual C++.
+// Используется DeliveryService.rc
+//
+#define IDI_MAIN                        2
+#define IDS_APPL_TITLE                  101
+#define IDS_MAINWINDOWS_TYPE            102
+#define IDR_MAIN_MENU                   103
+#define IDI_WHEAT                       104
+#define IDB_CONNECTION_BITMAP           113
+#define IDD_SOFTING_SERVER_SETTINGS_DIALOG 114
+#define IDD_ENDPOINT_SETTINGSDIALOG     116
+#define IDC_CERTIFICATE_PATH_EDIT       1001
+#define IDC_CERTIFICATE_PATH_BUTTON     1002
+#define IDC_PRIVATE_KEY_PATH_EDIT       1003
+#define IDC_PRIVATE_KEY_PATH_BUTTON     1004
+#define IDC_PASSWORD_EDIT               1005
+#define IDC_TRUSTED_PATH_EDIT           1006
+#define IDC_TRUSTED_PATH_BUTTON         1007
+#define IDC_REJECTED_PATH_EDIT          1008
+#define IDC_REJECTED_PATH_BUTTON        1009
+#define IDC_REVOCATION_PATH_EDIT        1010
+#define IDC_REVOCATION_PATH_BUTTON      1011
+#define IDC_SERVER_NAME_EDIT            1012
+#define IDC_PORT_EDIT                   1013
+#define IDC_END_POINT_LIST              1014
+#define IDC_ADD_ENDPOINT_BUTTON         1015
+#define IDC_REMOVE_ENDPOINT_BUTTON      1016
+#define IDC_END_POINT_URL_EDIT          1017
+#define IDC_SECURITY_CONFIGURATION_LIST 1018
+#define IDC_USER_POLICY_LIST            1019
+#define IDC_ADD_USER_POLICY_BUTTON      1020
+#define IDC_REMOVE_USER_POLICY_BUTTON   1022
+#define IDC_REMOVE_ALL_USER_POLICY_BUTTON 1023
+#define IDC_POLICY_ID_EDIT              1024
+#define IDC_POLICY_URI_EDIT             1025
+#define IDC_USER_NAME_EDIT              1026
+#define IDC_USER_NAME_PASSWORD_EDIT     1027
+#define IDC_TOKEN_TYPE_COMBO            1028
+#define ID_PARTICIPANTS                 40001
+#define ID_PARTICIPANTS_LOCATIONS       40002
+#define ID_LOCATIONS_LOADFROMDATABASE   40003
+#define ID_LOCATIONS_LOADFROMCSVFILE    40004
+#define ID_SOFTINGSERVERSETTINGS_CERTIFICATESLO 40005
+#define ID_SOFTINGSERVERSETTINGS_CERTIFICATES_LOCATIONS 40006
+#define ID_SOFTINGSERVERSETTINGS_ENDPOINTSSETTINGS 40007
+
+// Next default values for new objects
+// 
+#ifdef APSTUDIO_INVOKED
+#ifndef APSTUDIO_READONLY_SYMBOLS
+#define _APS_NEXT_RESOURCE_VALUE        118
+#define _APS_NEXT_COMMAND_VALUE         40008
+#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_SYMED_VALUE           101
+#endif
+#endif
