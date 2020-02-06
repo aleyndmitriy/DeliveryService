@@ -103,6 +103,9 @@
     <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Initializer">
       <UniqueIdentifier>{2babe18a-5755-41fa-9d04-69998fc83ebb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\XmlSettingsDataSource">
+      <UniqueIdentifier>{ffa0a1b7-1661-48e5-9cd3-d25bbc5b5726}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
