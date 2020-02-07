@@ -106,6 +106,9 @@
     <Filter Include="Файлы заголовков\XmlSettingsDataSource">
       <UniqueIdentifier>{ffa0a1b7-1661-48e5-9cd3-d25bbc5b5726}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\XmlSettingsDataSource">
+      <UniqueIdentifier>{b2f2b499-a827-454e-8b33-7d02444b34cb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -158,6 +161,9 @@
     </ClCompile>
     <ClCompile Include="SoftingEndPointSettingsPresenter.cpp">
       <Filter>Исходные файлы\SoftingServerEndPointsSettings\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="XMLSettingsDataSource.cpp">
+      <Filter>Исходные файлы\XmlSettingsDataSource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -244,6 +250,9 @@
     </ClInclude>
     <ClInclude Include="SoftingEndPointSettingsPresenter.h">
       <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Presenter</Filter>
+    </ClInclude>
+    <ClInclude Include="XMLSettingsDataSource.h">
+      <Filter>Файлы заголовков\XmlSettingsDataSource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
