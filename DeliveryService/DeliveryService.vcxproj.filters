@@ -73,36 +73,6 @@
     <Filter Include="Исходные файлы\SoftingServer">
       <UniqueIdentifier>{0e53a012-e766-4b5b-b80a-ee74128c01df}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings">
-      <UniqueIdentifier>{34ac13bf-c140-4afc-8086-28821f05c6bb}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\SettingsData">
-      <UniqueIdentifier>{74120f5f-4cc6-4970-b45d-f63a343eee77}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings">
-      <UniqueIdentifier>{3ac6343c-1c54-4dd8-9875-18f2ed543d37}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\SettingsData">
-      <UniqueIdentifier>{a0cf4a8b-5d07-4e71-a483-9adacefb6bb8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\Controller">
-      <UniqueIdentifier>{66254dc3-3428-417d-a4f2-45bb2ce8345e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Controller">
-      <UniqueIdentifier>{70162a75-d170-4e19-bd6c-8755829d017f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Presenter">
-      <UniqueIdentifier>{df92a466-4441-4707-b38a-40f6743a0df6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\Presenter">
-      <UniqueIdentifier>{12e6c2ec-7fda-4f9f-a82b-936063eb9437}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Файлы заголовков\SoftingServerEndPointsSettings\Initializer">
-      <UniqueIdentifier>{fdfdefd8-1b89-4745-8908-ea02ffb31ae3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Исходные файлы\SoftingServerEndPointsSettings\Initializer">
-      <UniqueIdentifier>{2babe18a-5755-41fa-9d04-69998fc83ebb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Файлы заголовков\XmlSettingsDataSource">
       <UniqueIdentifier>{ffa0a1b7-1661-48e5-9cd3-d25bbc5b5726}</UniqueIdentifier>
     </Filter>
@@ -144,25 +114,22 @@
     <ClCompile Include="SoftingServerCertificatePkiLocationSettings.cpp">
       <Filter>Исходные файлы\SoftingServerSettings\SettingsData</Filter>
     </ClCompile>
-    <ClCompile Include="SoftingServer.cpp">
+    <ClCompile Include="XMLSettingsDataSource.cpp">
+      <Filter>Исходные файлы\XmlSettingsDataSource</Filter>
+    </ClCompile>
+    <ClCompile Include="ConnectionAttributes.cpp">
       <Filter>Исходные файлы\SoftingServer</Filter>
     </ClCompile>
-    <ClCompile Include="SoftingServerUserPolicySettings.cpp">
-      <Filter>Исходные файлы\SoftingServerEndPointsSettings\SettingsData</Filter>
+    <ClCompile Include="SoftingApplication.cpp">
+      <Filter>Исходные файлы\SoftingServer</Filter>
     </ClCompile>
-    <ClCompile Include="SoftingServerEndPointSettings.cpp">
-      <Filter>Исходные файлы\SoftingServerEndPointsSettings\SettingsData</Filter>
+    <ClCompile Include="TagInfo.cpp">
+      <Filter>Исходные файлы\SoftingServer</Filter>
     </ClCompile>
-    <ClCompile Include="SoftingEndPointSettingsModuleInitializer.cpp">
-      <Filter>Исходные файлы\SoftingServerEndPointsSettings\Initializer</Filter>
+    <ClCompile Include="Record.cpp">
+      <Filter>Исходные файлы\SoftingServer</Filter>
     </ClCompile>
-    <ClCompile Include="SoftingEndPointSettingsController.cpp">
-      <Filter>Исходные файлы\SoftingServerEndPointsSettings\Controller</Filter>
-    </ClCompile>
-    <ClCompile Include="SoftingEndPointSettingsPresenter.cpp">
-      <Filter>Исходные файлы\SoftingServerEndPointsSettings\Presenter</Filter>
-    </ClCompile>
-    <ClCompile Include="XMLSettingsDataSource.cpp">
+    <ClCompile Include="..\pugixml\pugixml.cpp">
       <Filter>Исходные файлы\XmlSettingsDataSource</Filter>
     </ClCompile>
   </ItemGroup>
@@ -221,38 +188,26 @@
     <ClInclude Include="SoftingServerCertificatePkiLocationSettings.h">
       <Filter>Файлы заголовков\SoftingServerSettings\SettingsData</Filter>
     </ClInclude>
-    <ClInclude Include="SoftingServer.h">
-      <Filter>Файлы заголовков\SoftingServer</Filter>
-    </ClInclude>
     <ClInclude Include="SoftingServerOutput.h">
       <Filter>Файлы заголовков\SoftingServer</Filter>
     </ClInclude>
-    <ClInclude Include="SoftingServerUserPolicySettings.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\SettingsData</Filter>
-    </ClInclude>
-    <ClInclude Include="SoftingServerEndPointSettings.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\SettingsData</Filter>
-    </ClInclude>
-    <ClInclude Include="ISoftingEndPointSettingsModuleOutput.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Presenter</Filter>
-    </ClInclude>
-    <ClInclude Include="SoftingEndPointSettingsModuleInitializer.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Initializer</Filter>
-    </ClInclude>
-    <ClInclude Include="SoftingEndPointSettingsController.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="ISoftingEndPointSettingsViewInput.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="ISoftingEndPointSettingsViewOutput.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="SoftingEndPointSettingsPresenter.h">
-      <Filter>Файлы заголовков\SoftingServerEndPointsSettings\Presenter</Filter>
-    </ClInclude>
     <ClInclude Include="XMLSettingsDataSource.h">
       <Filter>Файлы заголовков\XmlSettingsDataSource</Filter>
+    </ClInclude>
+    <ClInclude Include="ConnectionAttributes.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingApplicationOutput.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingApplication.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="TagInfo.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="Record.h">
+      <Filter>Файлы заголовков\SoftingServer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

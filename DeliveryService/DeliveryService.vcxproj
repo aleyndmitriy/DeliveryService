@@ -136,28 +136,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\pugixml\pugixml.cpp" />
+    <ClCompile Include="ConnectionAttributes.cpp" />
     <ClCompile Include="InitMainWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MainWindowController.cpp" />
     <ClCompile Include="MainWindowPresenter.cpp" />
-    <ClCompile Include="SoftingEndPointSettingsController.cpp" />
-    <ClCompile Include="SoftingEndPointSettingsModuleInitializer.cpp" />
-    <ClCompile Include="SoftingEndPointSettingsPresenter.cpp" />
-    <ClCompile Include="SoftingServer.cpp" />
+    <ClCompile Include="Record.cpp" />
+    <ClCompile Include="SoftingApplication.cpp" />
     <ClCompile Include="SoftingServerCertificateOwnSettings.cpp" />
     <ClCompile Include="SoftingServerCertificatePkiLocationSettings.cpp" />
-    <ClCompile Include="SoftingServerEndPointSettings.cpp" />
     <ClCompile Include="SoftingServerInteractor.cpp" />
     <ClCompile Include="SoftingServerSettingsController.cpp" />
     <ClCompile Include="SoftingServerSettingsInitializer.cpp" />
     <ClCompile Include="SoftingServerSettingsPresenter.cpp" />
-    <ClCompile Include="SoftingServerUserPolicySettings.cpp" />
+    <ClCompile Include="TagInfo.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="XMLSettingsDataSource.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ConnectionAttributes.h" />
     <ClInclude Include="Constants.h" />
-    <ClInclude Include="ISoftingEndPointSettingsModuleOutput.h" />
     <ClInclude Include="ISoftingServerSettingsModuleOutput.h" />
     <ClInclude Include="ISoftingServerSettingsViewInput.h" />
     <ClInclude Include="ISoftingServerSettingsViewOutput.h" />
@@ -166,23 +165,19 @@
     <ClInclude Include="MainWindowController.h" />
     <ClInclude Include="MainWindowViewInput.h" />
     <ClInclude Include="MainWindowViewOutput.h" />
+    <ClInclude Include="Record.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="SoftingEndPointSettingsController.h" />
-    <ClInclude Include="SoftingEndPointSettingsModuleInitializer.h" />
-    <ClInclude Include="ISoftingEndPointSettingsViewInput.h" />
-    <ClInclude Include="ISoftingEndPointSettingsViewOutput.h" />
-    <ClInclude Include="SoftingEndPointSettingsPresenter.h" />
-    <ClInclude Include="SoftingServer.h" />
+    <ClInclude Include="SoftingApplication.h" />
+    <ClInclude Include="SoftingApplicationOutput.h" />
     <ClInclude Include="SoftingServerCertificateOwnSettings.h" />
     <ClInclude Include="SoftingServerCertificatePkiLocationSettings.h" />
-    <ClInclude Include="SoftingServerEndPointSettings.h" />
     <ClInclude Include="SoftingServerInteractor.h" />
     <ClInclude Include="SoftingServerInteractorOutput.h" />
     <ClInclude Include="SoftingServerOutput.h" />
     <ClInclude Include="SoftingServerSettingsController.h" />
     <ClInclude Include="SoftingServerSettingsInitializer.h" />
     <ClInclude Include="SoftingServerSettingsPresenter.h" />
-    <ClInclude Include="SoftingServerUserPolicySettings.h" />
+    <ClInclude Include="TagInfo.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="XMLSettingsDataSource.h" />
   </ItemGroup>

@@ -23,7 +23,7 @@ void SoftingServerSettingsController::setupInitialState()
 
 void SoftingServerSettingsController::OnBtnOkTouched() {
 	std::string serverName;
-	if (!ReadText(IDC_SERVER_NAME_EDIT, serverName)) {
+	if (!ReadText(IDC_COMPUTER_NAME_EDIT, serverName)) {
 		return;
 	}
 	std::string serverPort;

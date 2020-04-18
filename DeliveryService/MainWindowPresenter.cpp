@@ -1,6 +1,5 @@
 #include"MainWindowPresenter.h"
 #include"SoftingServerSettingsInitializer.h"
-#include"SoftingEndPointSettingsModuleInitializer.h"
 #include"Utils.h"
 #include"Constants.h"
 #include<functional>
@@ -114,21 +113,6 @@ void MainWindowPresenter::CreateServiceSettingsModule()
 }
 
 
-void MainWindowPresenter::CreateEndPointsServersSettingsModule()
-{
-	std::shared_ptr<IMainWindowViewInput> view = m_ptrView.lock();
-	if (view) {
-		int res = SoftingEndPointSettingsModuleInitializer::CreateModule(view->GetAppInstance(), view->GetWindowHandle(), shared_from_this());
-		if (res) {
-			
-		}
-	}
-}
-
-void MainWindowPresenter::GetEndPoints(const std::map<std::string, SoftingServerEndPointSettings>& settings)
-{
-
-}
 
 VOID CALLBACK GetIPList(PTP_CALLBACK_INSTANCE pInstance, PVOID pvContext)
 {
@@ -164,3 +148,57 @@ VOID CALLBACK GetIPList(PTP_CALLBACK_INSTANCE pInstance, PVOID pvContext)
 	}
 }
 
+void MainWindowPresenter::SendMessageError(std::string&& message)
+{
+
+}
+
+void MainWindowPresenter::SendWarning(std::string&& message)
+{
+
+}
+
+void MainWindowPresenter::SendMessageInfo(std::string&& message)
+{
+
+}
+
+void MainWindowPresenter::GetServers(std::vector<std::string>&& servers, std::string&& discoveryUrl)
+{
+
+}
+
+void MainWindowPresenter::SelectFoundedServer(const std::string& compName, unsigned int port, const std::string& serverName)
+{
+
+}
+
+void MainWindowPresenter::ChooseSecurityConfiguration()
+{
+
+}
+
+void MainWindowPresenter::GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& servers)
+{
+
+}
+
+void MainWindowPresenter::GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds)
+{
+
+}
+
+void MainWindowPresenter::GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates)
+{
+
+}
+
+void MainWindowPresenter::GetNewConnectionGuide(std::string&& uuid)
+{
+
+}
+
+void MainWindowPresenter::CloseConnectionWithGuide(std::string&& uuid)
+{
+
+}

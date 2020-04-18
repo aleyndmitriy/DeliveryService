@@ -182,7 +182,4 @@ void MainWindowController::CreateSoftingServerCertificateLocationsDialog()
 {
 	m_ptrPresenter->CreateServiceSettingsModule();
 }
-void MainWindowController::CreateSoftingServerEndPointsSettingsDialog()
-{
-	m_ptrPresenter->CreateEndPointsServersSettingsModule();
-}
+

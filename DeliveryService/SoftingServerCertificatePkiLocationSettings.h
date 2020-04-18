@@ -7,7 +7,7 @@ struct SoftingServerCertificatePkiLocationSettings
 	std::string rejectedFolderPath;
 	std::string revocationFolderPath;
 	SoftingServerCertificatePkiLocationSettings(const std::string& trusted, const std::string& rejected, const std::string& revocation);
-	SoftingServerCertificatePkiLocationSettings() = delete;
+	SoftingServerCertificatePkiLocationSettings() = default;
 	SoftingServerCertificatePkiLocationSettings(const SoftingServerCertificatePkiLocationSettings& src) = default;
 	SoftingServerCertificatePkiLocationSettings& operator=(const SoftingServerCertificatePkiLocationSettings& src) = default;
 	SoftingServerCertificatePkiLocationSettings(SoftingServerCertificatePkiLocationSettings&& src) = default;
