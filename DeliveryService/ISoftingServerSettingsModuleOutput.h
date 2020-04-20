@@ -5,6 +5,6 @@
 class ISoftingServerSettingsModuleOutput
 {
 public:
-	virtual void GetServerSettings(std::string&& serverName, unsigned int port, SoftingServerCertificateOwnSettings&& certificateSettings, SoftingServerCertificatePkiLocationSettings&& pkiSettings) = 0;
+	virtual void GetServerCertificateSettings(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated) = 0;
 	virtual ~ISoftingServerSettingsModuleOutput() {};
 };

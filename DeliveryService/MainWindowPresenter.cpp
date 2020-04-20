@@ -55,10 +55,9 @@ void MainWindowPresenter::SetViewInput(std::shared_ptr<IMainWindowViewInput> inp
 	m_ptrView = input;
 }
 
-void MainWindowPresenter::GetServerSettings(std::string&& serverName, unsigned int port, SoftingServerCertificateOwnSettings&& certificateSettings, SoftingServerCertificatePkiLocationSettings&& pkiSettings)
+void MainWindowPresenter::GetServerCertificateSettings(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated)
 {
-	std::string seting1 = certificateSettings.certificatePath;
-	std::string seting2 = certificateSettings.privateKeyPath;
+	
 }
 
 

@@ -17,13 +17,16 @@ void SoftingServerSettingsPresenter::SetViewInput(std::shared_ptr<ISoftingServer
 
 void SoftingServerSettingsPresenter::viewIsReady()
 {
-
+	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
+	if (output) {
+		
+	}
 }
 
-void SoftingServerSettingsPresenter::GetViewOutput(std::string&& serverName, unsigned int port, std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated)
+void SoftingServerSettingsPresenter::GetCertificateViewOutput(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated)
 {
 	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
 	if (output) {
-		output->GetServerSettings(std::move(serverName), port, SoftingServerCertificateOwnSettings(certificate, key, pass), SoftingServerCertificatePkiLocationSettings(trusted,rejected,revocated));
+		output->GetServerCertificateSettings(std::move(certificate), std::move(key), std::move(pass), std::move(trusted),std::move(rejected),std::move(revocated));
 	}
 }

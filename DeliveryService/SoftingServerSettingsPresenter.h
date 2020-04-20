@@ -13,7 +13,7 @@ public:
 	~SoftingServerSettingsPresenter();
 	void SetViewInput(std::shared_ptr<ISoftingServerSettingsViewInput> input) override;
 	void viewIsReady() override;
-	void GetViewOutput(std::string&& serverName, unsigned int port, std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated) override;
+	void GetCertificateViewOutput(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated) override;
 private:
 	std::weak_ptr<ISoftingServerSettingsViewInput> m_ptrView;
 	std::weak_ptr<ISoftingServerSettingsModuleOutput> m_ptrOutput;

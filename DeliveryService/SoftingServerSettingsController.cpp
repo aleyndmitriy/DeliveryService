@@ -22,46 +22,7 @@ void SoftingServerSettingsController::setupInitialState()
 }
 
 void SoftingServerSettingsController::OnBtnOkTouched() {
-	std::string serverName;
-	if (!ReadText(IDC_COMPUTER_NAME_EDIT, serverName)) {
-		return;
-	}
-	std::string serverPort;
-	if (!ReadText(IDC_PORT_EDIT, serverPort)) {
-		return;
-	}
-	unsigned int port = std::stoul(serverPort);
-	if (port < 1000) {
-		std::string message = "Port number is not correct!";
-		MessageBox(m_hWindow, TEXT(message.c_str()), "Warning", MB_ICONSTOP);
-		return;
-	}
-
-	std::string certificate;
-	if (!ReadText(IDC_CERTIFICATE_PATH_EDIT,certificate)) {
-		return;
-	}
-	std::string privateKey;
-	if (!ReadText(IDC_PRIVATE_KEY_PATH_EDIT, privateKey)) {
-		return;
-	}
-	std::string trusted;
-	if (!ReadText(IDC_TRUSTED_PATH_EDIT, trusted)) {
-		return;
-	}
-	std::string rejected;
-	if (!ReadText(IDC_REJECTED_PATH_EDIT, rejected)) {
-		return;
-	}
-	std::string revocation;
-	if (!ReadText(IDC_REVOCATION_PATH_EDIT, revocation)) {
-		return;
-	}
-	std::string password;
-	if (!ReadText(IDC_PASSWORD_EDIT, password)) {
-		return;
-	}
-	m_ptrPresenter->GetViewOutput(std::move(serverName), port, std::move(certificate), std::move(privateKey), std::move(password),std::move(trusted), std::move(rejected),std::move(revocation));
+	
 	m_bIsOk = true;
 	SendMessage(m_hWindow, WM_CLOSE, 0, 0);
 }
@@ -121,20 +82,20 @@ void SoftingServerSettingsController::OnBtnChoosePrivateKeyPathTouched()
 
 void SoftingServerSettingsController::OnBtnChoosePkiTrustedFolderPathTouched()
 {
-	WriteTextFromPathDlg(IDC_TRUSTED_PATH_BUTTON);
+	writeTextFromPathDlg(IDC_TRUSTED_PATH_BUTTON);
 }
 
 void SoftingServerSettingsController::OnBtnChoosePkiRejectedFolderPathTouched()
 {
-	WriteTextFromPathDlg(IDC_REJECTED_PATH_BUTTON);
+	writeTextFromPathDlg(IDC_REJECTED_PATH_BUTTON);
 }
 
 void SoftingServerSettingsController::OnBtnChoosePkiRevocationFolderPathTouched()
 {
-	WriteTextFromPathDlg(IDC_REVOCATION_PATH_BUTTON);
+	writeTextFromPathDlg(IDC_REVOCATION_PATH_BUTTON);
 }
 
-bool SoftingServerSettingsController::ReadText(int itemId, std::string& text)
+bool SoftingServerSettingsController::readText(int itemId, std::string& text)
 {
 	TCHAR szPathname[_MAX_PATH];
 	memset(szPathname, '\0', _MAX_PATH);
@@ -142,14 +103,41 @@ bool SoftingServerSettingsController::ReadText(int itemId, std::string& text)
 	if (len <= 0) {
 		DWORD err = GetLastError();
 		std::string message = GetErrorText(err);
-		MessageBox(m_hWindow, TEXT(message.c_str()), "Warning", MB_ICONSTOP);
+		//MessageBox(m_hWindow, TEXT(message.c_str()), "Warning", MB_ICONWARNING);
 		return false;
 	}
 	text = std::string(szPathname);
 	return true;
 }
 
-void SoftingServerSettingsController::WriteTextFromPathDlg(int itemId)
+bool SoftingServerSettingsController::readComboText(int itemId, std::string& text)
+{
+	TCHAR szPathname[_MAX_PATH];
+	memset(szPathname, '\0', _MAX_PATH);
+	LRESULT ind = SendDlgItemMessage(m_hWindow, itemId, CB_GETCURSEL,NULL,NULL);
+	if (ind == CB_ERR) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+		return false;
+	}
+	LRESULT res = SendDlgItemMessage(m_hWindow, itemId, CB_GETLBTEXTLEN, ind, NULL);
+	if (res < 1 || res > _MAX_PATH) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+		return false;
+	}
+	res = SendDlgItemMessage(m_hWindow, itemId, CB_GETLBTEXT, ind, (LPARAM)szPathname);
+	if (res == CB_ERR) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+		return false;
+	}
+	text = std::string(szPathname);
+	return true;
+}
+
+
+void SoftingServerSettingsController::writeTextFromPathDlg(int itemId)
 {
 	BOOL bOk = FALSE;
 	LPITEMIDLIST list = NULL;
@@ -203,6 +191,89 @@ void SoftingServerSettingsController::WriteTextFromPathDlg(int itemId)
 	}
 }
 
+void SoftingServerSettingsController::startLoading()
+{
+	HCURSOR hCurs = LoadCursor(NULL, IDC_WAIT);
+	SetCursor(hCurs);
+}
+
+void SoftingServerSettingsController::stopLoading()
+{
+	HCURSOR hCurs = LoadCursor(NULL, IDC_ARROW);
+	SetCursor(hCurs);
+}
+
+
+void SoftingServerSettingsController::readAttributes()
+{
+	std::string compName;
+	if (!readText(IDC_COMPUTER_NAME_EDIT, compName)) {
+		return;
+	}
+	std::string serverPort;
+	if (!readText(IDC_PORT_EDIT, serverPort)) {
+		return;
+	}
+	unsigned int port = std::stoul(serverPort);
+	if (port < 1000) {
+		std::string message = "Port number is not correct!";
+		MessageBox(m_hWindow, TEXT(message.c_str()), "Warning", MB_ICONSTOP);
+		return;
+	}
+
+	std::string serverName;
+	if (!readComboText(IDC_SELECT_SERVER_COMBO, serverName)) {
+		return;
+	}
+
+	std::string serverConfig;
+	if (!readComboText(IDC_CONFIGURATION_COMBO, serverConfig)) {
+		return;
+	}
+
+	std::string serverPolicy;
+	if (!readComboText(IDC_POLICY_ID_COMBO, serverPolicy)) {
+		return;
+	}
+
+	std::string user;
+	if (!readText(IDC_USER_NAME_EDIT, user)) {
+		return;
+	}
+
+	std::string userPass;
+	if (!readText(IDC_USER_PASSWORD_EDIT, userPass)) {
+		return;
+	}
+
+	std::string certificate;
+	if (!readText(IDC_CERTIFICATE_PATH_EDIT, certificate)) {
+		return;
+	}
+	std::string privateKey;
+	if (!readText(IDC_PRIVATE_KEY_PATH_EDIT, privateKey)) {
+		return;
+	}
+	std::string trusted;
+	if (!readText(IDC_TRUSTED_PATH_EDIT, trusted)) {
+		return;
+	}
+	std::string rejected;
+	if (!readText(IDC_REJECTED_PATH_EDIT, rejected)) {
+		return;
+	}
+	std::string revocation;
+	if (!readText(IDC_REVOCATION_PATH_EDIT, revocation)) {
+		return;
+	}
+	std::string password;
+	if (!readText(IDC_PASSWORD_EDIT, password)) {
+		return;
+	}
+
+	m_ptrPresenter->GetCertificateViewOutput(std::move(certificate), std::move(privateKey), std::move(password),std::move(trusted), std::move(rejected),std::move(revocation));
+}
+
 INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	static std::shared_ptr<SoftingServerSettingsController> controller;
 	switch (uMsg) {
@@ -242,3 +313,4 @@ INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARA
 	}
 	return(FALSE);
 }
+

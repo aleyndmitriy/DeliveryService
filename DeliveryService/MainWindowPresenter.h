@@ -18,7 +18,7 @@ public:
 	~MainWindowPresenter();
 	void viewIsReady() override;
 	void SetViewInput(std::shared_ptr<IMainWindowViewInput> input) override;
-	void GetServerSettings(std::string&& serverName, unsigned int port, SoftingServerCertificateOwnSettings&& certificateSettings, SoftingServerCertificatePkiLocationSettings&& pkiSettings) override;
+	void GetServerCertificateSettings(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated) override;
 	void GetIpAddress() override;
 	void CreateServiceSettingsModule() override;
 	void GetMessageInfo(std::string message);

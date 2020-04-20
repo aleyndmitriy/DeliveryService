@@ -24,8 +24,12 @@ private:
 	HWND m_hWindow;
 	std::shared_ptr<ISoftingServerSettingsViewOutput> m_ptrPresenter;
 	bool m_bIsOk;
-	bool ReadText(int itemId, std::string& text);
-	void WriteTextFromPathDlg(int itemId);
+	bool readText(int itemId, std::string& text);
+	void writeTextFromPathDlg(int itemId);
+	bool readComboText(int itemId, std::string& text);
+	void startLoading();
+	void stopLoading();
+	void readAttributes();
 };
 
 INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);
