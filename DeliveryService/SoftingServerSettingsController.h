@@ -13,6 +13,9 @@ public:
 	SoftingServerSettingsController& operator=(const SoftingServerSettingsController& rhs) = delete;
 	~SoftingServerSettingsController();
 	void setupInitialState() override;
+	void OnBtnBrowseNetworkTouched();
+	void OnBtnDiscoveryServerTouched();
+	void OnBtnGetServerPropertiesTouched();
 	void OnBtnOkTouched();
 	void OnBtnCancelTouched();
 	void OnBtnChooseCertificatePathTouched();
@@ -20,6 +23,10 @@ public:
 	void OnBtnChoosePkiTrustedFolderPathTouched();
 	void OnBtnChoosePkiRejectedFolderPathTouched();
 	void OnBtnChoosePkiRevocationFolderPathTouched();
+	void OnCbnSelchangeComboSelectServer();
+	void OnCbnEditChangeComboSelectServer();
+	void OnCbnSelChangeComboConfiguration();
+	void OnCbnSelChangeComboPolicyId();
 private:
 	HWND m_hWindow;
 	std::shared_ptr<ISoftingServerSettingsViewOutput> m_ptrPresenter;

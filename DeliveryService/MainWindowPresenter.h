@@ -19,6 +19,10 @@ public:
 	void viewIsReady() override;
 	void SetViewInput(std::shared_ptr<IMainWindowViewInput> input) override;
 	void GetServerCertificateSettings(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated) override;
+	void GetServerConfigurationSettings(std::string&& computerName, std::string&& serverName, unsigned int port) override;
+	void GetServerSecurityConfigurationSettings(std::string&& serverSecurityName, std::string&& serverSecurityPolicy, std::string&& securityMode) override;
+	void GetServerSecurityPolicyIdSettings(std::string&& policyId) override;
+	void GetServerUserNamePasswordSettings(std::string&& userName, std::string&& password) override;
 	void GetIpAddress() override;
 	void CreateServiceSettingsModule() override;
 	void GetMessageInfo(std::string message);

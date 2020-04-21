@@ -21,6 +21,21 @@ void SoftingServerSettingsController::setupInitialState()
 	m_ptrPresenter->SetViewInput(shared_from_this());
 }
 
+void SoftingServerSettingsController::OnBtnBrowseNetworkTouched()
+{
+
+}
+
+void SoftingServerSettingsController::OnBtnDiscoveryServerTouched()
+{
+
+}
+
+void SoftingServerSettingsController::OnBtnGetServerPropertiesTouched()
+{
+
+}
+
 void SoftingServerSettingsController::OnBtnOkTouched() {
 	
 	m_bIsOk = true;
@@ -93,6 +108,44 @@ void SoftingServerSettingsController::OnBtnChoosePkiRejectedFolderPathTouched()
 void SoftingServerSettingsController::OnBtnChoosePkiRevocationFolderPathTouched()
 {
 	writeTextFromPathDlg(IDC_REVOCATION_PATH_BUTTON);
+}
+
+
+void SoftingServerSettingsController::OnCbnSelchangeComboSelectServer()
+{
+	startLoading();
+	readAttributes();
+	//GetConfigurationsListForSelectedServer();
+}
+
+void SoftingServerSettingsController::OnCbnEditChangeComboSelectServer()
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_GETCOUNT, NULL, NULL);
+	if (res > 0) {
+		SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_RESETCONTENT, NULL, NULL);
+	}
+	SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_RESETCONTENT, NULL, NULL);
+	m_ptrPresenter->GetServerSecurityConfigurationViewOutput(std::string());
+	//m_endPointsConfigurations.clear();
+	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
+	m_ptrPresenter->GetServerSecurityPolicyIdViewOutput(std::string());
+	//m_endPointPolicyIds.clear();
+}
+
+void SoftingServerSettingsController::OnCbnSelChangeComboConfiguration()
+{
+	startLoading();
+	readAttributes();
+	//GetPolicyListForSelectedConfiguration();
+}
+
+void SoftingServerSettingsController::OnCbnSelChangeComboPolicyId()
+{
+	startLoading();
+	//SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
+	readAttributes();
+	//m_pSoftingInteractor->ChooseCurrentTokenPolicy();
 }
 
 bool SoftingServerSettingsController::readText(int itemId, std::string& text)
@@ -226,19 +279,23 @@ void SoftingServerSettingsController::readAttributes()
 		return;
 	}
 
+	m_ptrPresenter->GetServerConfigurationViewOutput(std::move(compName), std::move(serverName), port);
+
 	std::string serverConfig;
 	if (!readComboText(IDC_CONFIGURATION_COMBO, serverConfig)) {
-		return;
+		m_ptrPresenter->GetServerSecurityConfigurationViewOutput(std::move(serverConfig));
 	}
+
+	
 
 	std::string serverPolicy;
 	if (!readComboText(IDC_POLICY_ID_COMBO, serverPolicy)) {
-		return;
+		m_ptrPresenter->GetServerSecurityPolicyIdViewOutput(std::move(serverPolicy));
 	}
 
 	std::string user;
 	if (!readText(IDC_USER_NAME_EDIT, user)) {
-		return;
+		
 	}
 
 	std::string userPass;
@@ -246,10 +303,13 @@ void SoftingServerSettingsController::readAttributes()
 		return;
 	}
 
+	m_ptrPresenter->GetServerUserNameViewOutput(std::move(user), std::move(userPass));
+
 	std::string certificate;
 	if (!readText(IDC_CERTIFICATE_PATH_EDIT, certificate)) {
 		return;
 	}
+
 	std::string privateKey;
 	if (!readText(IDC_PRIVATE_KEY_PATH_EDIT, privateKey)) {
 		return;
@@ -307,6 +367,48 @@ INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARA
 			break;
 		case IDC_REVOCATION_PATH_BUTTON:
 			controller->OnBtnChoosePkiRevocationFolderPathTouched();
+			break;
+		case IDC_BROWSE_NETWORK_BUTTON:
+			controller->OnBtnBrowseNetworkTouched();
+			break;
+		case IDC_DICOVER_SERVER_LIST_BUTTON:
+			controller->OnBtnDiscoveryServerTouched();
+			break;
+		case IDC_GET_SERVER_PROPERTIES_BUTTON:
+			controller->OnBtnGetServerPropertiesTouched();
+			break;
+		case IDC_SELECT_SERVER_COMBO:
+			switch (HIWORD(wParam))
+			{
+			case CBN_SELCHANGE:
+				controller->OnCbnSelchangeComboSelectServer();
+				break;
+			case CBN_EDITCHANGE:
+				controller->OnCbnEditChangeComboSelectServer();
+				break;
+			default:
+				break;
+			}
+			break;
+		case IDC_CONFIGURATION_COMBO:
+			switch (HIWORD(wParam))
+			{
+			case CBN_SELCHANGE:
+				controller->OnCbnSelChangeComboConfiguration();
+				break;
+			default:
+				break;
+			}
+			break;
+		case IDC_POLICY_ID_COMBO:
+			switch (HIWORD(wParam))
+			{
+			case CBN_SELCHANGE:
+				controller->OnCbnSelChangeComboPolicyId();
+				break;
+			default:
+				break;
+			}
 			break;
 		}
 		break;

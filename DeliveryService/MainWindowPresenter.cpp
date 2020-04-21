@@ -60,6 +60,27 @@ void MainWindowPresenter::GetServerCertificateSettings(std::string&& certificate
 	
 }
 
+void MainWindowPresenter::GetServerConfigurationSettings(std::string&& computerName, std::string&& serverName, unsigned int port)
+{
+
+}
+
+void MainWindowPresenter::GetServerSecurityConfigurationSettings(std::string&& serverSecurityName, std::string&& serverSecurityPolicy, std::string&& securityMode)
+{
+
+}
+
+void MainWindowPresenter::GetServerSecurityPolicyIdSettings(std::string&& policyId)
+{
+
+}
+
+
+void MainWindowPresenter::GetServerUserNamePasswordSettings(std::string&& userName, std::string&& password)
+{
+
+}
+
 
 void MainWindowPresenter::GetIpAddress()
 {
