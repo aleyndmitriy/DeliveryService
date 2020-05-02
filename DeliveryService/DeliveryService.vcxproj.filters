@@ -79,6 +79,24 @@
     <Filter Include="Исходные файлы\XmlSettingsDataSource">
       <UniqueIdentifier>{b2f2b499-a827-454e-8b33-7d02444b34cb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Файлы заголовков\SoftingApplicationSettings">
+      <UniqueIdentifier>{853b8ca8-b633-43de-84b3-c7052258687c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingApplicationSettings\Controller">
+      <UniqueIdentifier>{18923a87-d179-4f51-9faf-9f9b51153988}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingApplicationSettings\Initializer">
+      <UniqueIdentifier>{320baf9c-71a8-4065-9e78-8bfba615d0d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Файлы заголовков\SoftingApplicationSettings\Presenter">
+      <UniqueIdentifier>{5a34e756-3606-4142-8fb4-9ad5261444ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingApplicationSettings">
+      <UniqueIdentifier>{6e2e15d0-afa9-4943-83d1-e559ae0cf9c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingApplicationSettings\Controller">
+      <UniqueIdentifier>{a99b612d-8281-4018-97ca-9591b3d2c8de}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -132,6 +150,9 @@
     <ClCompile Include="..\pugixml\pugixml.cpp">
       <Filter>Исходные файлы\XmlSettingsDataSource</Filter>
     </ClCompile>
+    <ClCompile Include="SoftingApplicationSettingsController.cpp">
+      <Filter>Исходные файлы\SoftingApplicationSettings\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h">
@@ -179,17 +200,11 @@
     <ClInclude Include="SoftingServerSettingsInitializer.h">
       <Filter>Файлы заголовков\SoftingServerSettings\Initializer</Filter>
     </ClInclude>
-    <ClInclude Include="ISoftingServerSettingsModuleOutput.h">
-      <Filter>Файлы заголовков\SoftingServerSettings\Presenter</Filter>
-    </ClInclude>
     <ClInclude Include="SoftingServerCertificateOwnSettings.h">
       <Filter>Файлы заголовков\SoftingServerSettings\SettingsData</Filter>
     </ClInclude>
     <ClInclude Include="SoftingServerCertificatePkiLocationSettings.h">
       <Filter>Файлы заголовков\SoftingServerSettings\SettingsData</Filter>
-    </ClInclude>
-    <ClInclude Include="SoftingServerOutput.h">
-      <Filter>Файлы заголовков\SoftingServer</Filter>
     </ClInclude>
     <ClInclude Include="XMLSettingsDataSource.h">
       <Filter>Файлы заголовков\XmlSettingsDataSource</Filter>
@@ -208,6 +223,18 @@
     </ClInclude>
     <ClInclude Include="Record.h">
       <Filter>Файлы заголовков\SoftingServer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingServerSettingsInteractorOutput.h">
+      <Filter>Файлы заголовков\MainWindow\Interactor</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingApplicationSettingsViewInput.h">
+      <Filter>Файлы заголовков\SoftingApplicationSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ISoftingApplicationSettingsViewOutput.h">
+      <Filter>Файлы заголовков\SoftingApplicationSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingApplicationSettingsController.h">
+      <Filter>Файлы заголовков\SoftingApplicationSettings\Controller</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

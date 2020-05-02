@@ -35,9 +35,8 @@ public:
 	void GetServerPropertyByEndPoint(const std::string& endPointName, bool isDialog);
 	void GetServerPropertyByUrn(const std::string& urn);
 private:
-	std::shared_ptr<ConnectionAttributes> m_pServerAttributes;
 	std::shared_ptr<SoftingServerCertificateOwnSettings> m_pCertificateSettings;
-	std::shared_ptr<SoftingServerCertificatePkiLocationSettings> m_pPkiLocation;
+	std::shared_ptr<ConnectionAttributes> m_pServerAttributes;
 	std::shared_ptr<DataTypeAttributes> m_pDataAttributes;
 	std::weak_ptr<SoftingServerInteractorOutput> m_pOutput;
 	EnumStatusCode m_enumResult;

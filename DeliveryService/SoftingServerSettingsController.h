@@ -18,13 +18,7 @@ public:
 	void OnBtnGetServerPropertiesTouched();
 	void OnBtnOkTouched();
 	void OnBtnCancelTouched();
-	void OnBtnChooseCertificatePathTouched();
-	void OnBtnChoosePrivateKeyPathTouched();
-	void OnBtnChoosePkiTrustedFolderPathTouched();
-	void OnBtnChoosePkiRejectedFolderPathTouched();
-	void OnBtnChoosePkiRevocationFolderPathTouched();
 	void OnCbnSelchangeComboSelectServer();
-	void OnCbnEditChangeComboSelectServer();
 	void OnCbnSelChangeComboConfiguration();
 	void OnCbnSelChangeComboPolicyId();
 private:
@@ -32,11 +26,12 @@ private:
 	std::shared_ptr<ISoftingServerSettingsViewOutput> m_ptrPresenter;
 	bool m_bIsOk;
 	bool readText(int itemId, std::string& text);
-	void writeTextFromPathDlg(int itemId);
 	bool readComboText(int itemId, std::string& text);
 	void startLoading();
 	void stopLoading();
 	void readAttributes();
+	void getConfigurationsListForSelectedServer();
+	void getPolicyListForSelectedConfiguration();
 };
 
 INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

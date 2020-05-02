@@ -8,7 +8,7 @@
 #include<exception>
 
 SoftingServerInteractor::SoftingServerInteractor() :
-	m_pServerAttributes(), m_pCertificateSettings(), m_pPkiLocation(), m_pDataAttributes(), m_pOutput(), m_enumResult(), m_selectedEndPointDescription(nullptr), m_userToken(nullptr), m_sessionsList(), m_isGoodInclude(false), m_isBadInclude(false), m_isUncertainInclude(false)
+	m_pServerAttributes(), m_pDataAttributes(), m_pOutput(), m_enumResult(), m_selectedEndPointDescription(nullptr), m_userToken(nullptr), m_sessionsList(), m_isGoodInclude(false), m_isBadInclude(false), m_isUncertainInclude(false)
 {
 
 }
@@ -67,8 +67,6 @@ void SoftingServerInteractor::SetOutput(std::shared_ptr<SoftingServerInteractorO
 bool SoftingServerInteractor::startApplication()
 {
 	SoftingApplication::Instance().AddDelegate(shared_from_this());
-	SoftingApplication::Instance().SetSertificate(*m_pCertificateSettings);
-	SoftingApplication::Instance().SetPKILocation(*m_pPkiLocation);
 	return SoftingApplication::Instance().StartApplication();
 }
 
@@ -84,7 +82,6 @@ void SoftingServerInteractor::OpenConnection()
 		if (output) {
 			std::string message("Can not create Guide!");
 			output->SendMessageError(std::move(message));
-			output->GetNewConnectionGuide(std::string());
 		}
 		return;
 	}

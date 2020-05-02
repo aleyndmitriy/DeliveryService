@@ -1,6 +1,7 @@
 #include"SoftingServerSettingsPresenter.h"
 
-SoftingServerSettingsPresenter::SoftingServerSettingsPresenter(std::shared_ptr<ISoftingServerSettingsModuleOutput> output):m_ptrView(),m_ptrOutput(output)
+SoftingServerSettingsPresenter::SoftingServerSettingsPresenter( std::shared_ptr<ConnectionAttributes> connectionAttributes, std::shared_ptr<DataTypeAttributes> dataAttributes):
+m_ptrView(), m_connectAttributes(connectionAttributes), m_dataAttributes(dataAttributes)
 {
 
 }
@@ -17,26 +18,12 @@ void SoftingServerSettingsPresenter::SetViewInput(std::shared_ptr<ISoftingServer
 
 void SoftingServerSettingsPresenter::viewIsReady()
 {
-	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
-	if (output) {
-		
-	}
-}
-
-void SoftingServerSettingsPresenter::GetCertificateViewOutput(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated)
-{
-	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
-	if (output) {
-		output->GetServerCertificateSettings(std::move(certificate), std::move(key), std::move(pass), std::move(trusted),std::move(rejected),std::move(revocated));
-	}
+	
 }
 
 void SoftingServerSettingsPresenter::GetServerConfigurationViewOutput(std::string&& computerName, std::string&& serverName, unsigned int port)
 {
-	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
-	if (output) {
-		output->GetServerConfigurationSettings(std::move(computerName), std::move(serverName), port);
-	}
+	
 }
 
 void SoftingServerSettingsPresenter::GetServerSecurityConfigurationViewOutput(std::string&& securityConfiguration)
@@ -51,24 +38,70 @@ void SoftingServerSettingsPresenter::GetServerSecurityConfigurationViewOutput(st
 		securityName = securityConfiguration.substr(posSecondPartOfName + 1, securityConfiguration.size() - posSecondPartOfName);
 		securityMode = securityConfiguration.substr(posFirstPartOfName + 1, posSecondPartOfName - posFirstPartOfName - 1);
 	}
-	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
-	if (output) {
-		output->GetServerSecurityConfigurationSettings(std::move(serverName), std::move(securityName), std::move(securityMode));
-	}
+	
 }
 
 void SoftingServerSettingsPresenter::GetServerSecurityPolicyIdViewOutput(std::string&& policyId)
 {
-	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
-	if (output) {
-		output->GetServerSecurityPolicyIdSettings(std::move(policyId));
-	}
+	
 }
 
 void SoftingServerSettingsPresenter::GetServerUserNameViewOutput(std::string&& userName, std::string&& password)
 {
-	std::shared_ptr<ISoftingServerSettingsModuleOutput> output = m_ptrOutput.lock();
-	if (output) {
-		
-	}
+	
 }
+
+void SoftingServerSettingsPresenter::SendMessageError(std::string&& message)
+{
+
+}
+
+void SoftingServerSettingsPresenter::SendWarning(std::string&& message)
+{
+
+}
+
+void SoftingServerSettingsPresenter::SendMessageInfo(std::string&& message)
+{
+
+}
+
+void SoftingServerSettingsPresenter::GetServers(std::vector<std::string>&& servers, std::string&& discoveryUrl)
+{
+	//m_cmbServerName.ResetContent();
+	size_t index = 0;
+	for (std::vector<std::string>::const_iterator itr = servers.cbegin(); itr != servers.cend(); ++itr)
+	{
+		//int pos = m_cmbServerName.AddString(itr->c_str());
+		//m_cmbServerName.SetItemData(pos, index++);
+	}
+
+	m_connectAttributes->configurationMode.serverSecurityName = discoveryUrl;
+	//StopLoading();
+}
+
+void SoftingServerSettingsPresenter::SelectFoundedServer(const std::string& compName, unsigned int port, const std::string& serverName)
+{
+
+}
+
+void SoftingServerSettingsPresenter::ChooseSecurityConfiguration()
+{
+
+}
+
+void SoftingServerSettingsPresenter::GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& servers)
+{
+
+}
+
+void SoftingServerSettingsPresenter::GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds)
+{
+
+}
+
+void SoftingServerSettingsPresenter::GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates)
+{
+
+}
+

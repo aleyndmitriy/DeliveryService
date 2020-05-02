@@ -55,33 +55,6 @@ void MainWindowPresenter::SetViewInput(std::shared_ptr<IMainWindowViewInput> inp
 	m_ptrView = input;
 }
 
-void MainWindowPresenter::GetServerCertificateSettings(std::string&& certificate, std::string&& key, std::string&& pass, std::string&& trusted, std::string&& rejected, std::string&& revocated)
-{
-	
-}
-
-void MainWindowPresenter::GetServerConfigurationSettings(std::string&& computerName, std::string&& serverName, unsigned int port)
-{
-
-}
-
-void MainWindowPresenter::GetServerSecurityConfigurationSettings(std::string&& serverSecurityName, std::string&& serverSecurityPolicy, std::string&& securityMode)
-{
-
-}
-
-void MainWindowPresenter::GetServerSecurityPolicyIdSettings(std::string&& policyId)
-{
-
-}
-
-
-void MainWindowPresenter::GetServerUserNamePasswordSettings(std::string&& userName, std::string&& password)
-{
-
-}
-
-
 void MainWindowPresenter::GetIpAddress()
 {
 	std::shared_ptr<IMainWindowViewInput> view = m_ptrView.lock();
@@ -166,59 +139,4 @@ VOID CALLBACK GetIPList(PTP_CALLBACK_INSTANCE pInstance, PVOID pvContext)
 	else {
 		presenter->GetErrorInfo(std::string("Can't get Ip interfaces"));
 	}
-}
-
-void MainWindowPresenter::SendMessageError(std::string&& message)
-{
-
-}
-
-void MainWindowPresenter::SendWarning(std::string&& message)
-{
-
-}
-
-void MainWindowPresenter::SendMessageInfo(std::string&& message)
-{
-
-}
-
-void MainWindowPresenter::GetServers(std::vector<std::string>&& servers, std::string&& discoveryUrl)
-{
-
-}
-
-void MainWindowPresenter::SelectFoundedServer(const std::string& compName, unsigned int port, const std::string& serverName)
-{
-
-}
-
-void MainWindowPresenter::ChooseSecurityConfiguration()
-{
-
-}
-
-void MainWindowPresenter::GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& servers)
-{
-
-}
-
-void MainWindowPresenter::GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds)
-{
-
-}
-
-void MainWindowPresenter::GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates)
-{
-
-}
-
-void MainWindowPresenter::GetNewConnectionGuide(std::string&& uuid)
-{
-
-}
-
-void MainWindowPresenter::CloseConnectionWithGuide(std::string&& uuid)
-{
-
 }

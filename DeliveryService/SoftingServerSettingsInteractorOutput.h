@@ -3,7 +3,7 @@
 #include<vector>
 #include"ConnectionAttributes.h"
 
-class SoftingServerInteractorOutput {
+class SoftingServerSettingsInteractorOutput {
 public:
 	virtual void SendMessageError(std::string&& message) = 0;
 	virtual void SendWarning(std::string&& message) = 0;
@@ -14,5 +14,5 @@ public:
 	virtual void GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& servers) = 0;
 	virtual void GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds) = 0;
 	virtual void GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates) = 0;
-	virtual ~SoftingServerInteractorOutput() {};
+	virtual ~SoftingServerSettingsInteractorOutput() {};
 };
