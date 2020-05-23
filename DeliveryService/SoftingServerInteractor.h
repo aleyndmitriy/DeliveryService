@@ -8,14 +8,13 @@
 
 class SoftingServerInteractor: public SoftingApplicationOutput, public std::enable_shared_from_this<SoftingServerInteractor> {
 public:
-	SoftingServerInteractor();
+	SoftingServerInteractor(std::shared_ptr<ConnectionAttributes> connectionAttributes, std::shared_ptr<DataTypeAttributes> dataAttributes);
+	SoftingServerInteractor() = delete;
 	SoftingServerInteractor(const SoftingServerInteractor& src) = delete;
 	SoftingServerInteractor& operator=(const SoftingServerInteractor& src) = delete;
 	SoftingServerInteractor(SoftingServerInteractor&& src) = delete;
 	SoftingServerInteractor& operator=(SoftingServerInteractor&& src) = delete;
 	~SoftingServerInteractor();
-	void SetAttributes(std::shared_ptr<ConnectionAttributes> attributes);
-	void SetDataAttributes(std::shared_ptr<DataTypeAttributes> attributes);
 	void SetOutput(std::shared_ptr<SoftingServerInteractorOutput> output);
 	void GetServers();
 	void GetAggregates();
@@ -43,9 +42,6 @@ private:
 	std::unique_ptr<SoftingOPCToolbox5::EndpointDescription> m_selectedEndPointDescription;
 	std::unique_ptr<SoftingOPCToolbox5::UserTokenPolicy> m_userToken;
 	std::map<std::string, SoftingOPCToolbox5::Client::SessionPtr> m_sessionsList;
-	bool m_isGoodInclude;
-	bool m_isBadInclude;
-	bool m_isUncertainInclude;
 	bool startApplication();
 	EnumStatusCode getServersByEndPoint(const std::string& endPointName);
 	EnumStatusCode chooseCurrentServer(const std::string& endPointName, const std::vector<std::string>& serverURIs);

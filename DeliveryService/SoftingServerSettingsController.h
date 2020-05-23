@@ -12,7 +12,11 @@ public:
 	SoftingServerSettingsController(const SoftingServerSettingsController& src) = delete;
 	SoftingServerSettingsController& operator=(const SoftingServerSettingsController& rhs) = delete;
 	~SoftingServerSettingsController();
-	void setupInitialState() override;
+	void setupInitialState();
+	void OnEditComputerNameChanged();
+	void OnEditPortChanged();
+	void OnEditLoginChanged();
+	void OnEditPasswordChanged();
 	void OnBtnBrowseNetworkTouched();
 	void OnBtnDiscoveryServerTouched();
 	void OnBtnGetServerPropertiesTouched();
@@ -21,6 +25,19 @@ public:
 	void OnCbnSelchangeComboSelectServer();
 	void OnCbnSelChangeComboConfiguration();
 	void OnCbnSelChangeComboPolicyId();
+	void SetNameOfComputer(const std::string& computerName) override;
+	void SetServerPort(const std::string& serverPort) override;
+	void SetServerName(const std::string& serverName) override;
+	void SetServerEndPoints(std::vector<std::string>&& endPoints) override;
+	void SelectEndPoint(int index) override;
+	void SetPolicyIds(std::vector<std::pair<std::string, int> >&& policyIds) override;
+	void SelectPolicyId(int index, const std::string& uri) override;
+	void SetUserLogin(const std::string& login) override;
+	void SetUserPassword(const std::string& password) override;
+	void ClearSecurityPolicyView() override;
+	void ClearServerConfigurationView() override;
+	void ClearServerListView() override;
+	void SetModeConfiguration(const std::string& serverSecurityName, const std::string& serverSecurityPolicy, const std::string& mode) override;
 private:
 	HWND m_hWindow;
 	std::shared_ptr<ISoftingServerSettingsViewOutput> m_ptrPresenter;
@@ -29,9 +46,6 @@ private:
 	bool readComboText(int itemId, std::string& text);
 	void startLoading();
 	void stopLoading();
-	void readAttributes();
-	void getConfigurationsListForSelectedServer();
-	void getPolicyListForSelectedConfiguration();
 };
 
 INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam);

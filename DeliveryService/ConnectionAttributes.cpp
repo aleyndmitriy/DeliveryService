@@ -175,6 +175,11 @@ ServerSecurityModeConfiguration::ServerSecurityModeConfiguration(): ServerSecuri
 
 ServerSecurityModeConfiguration::~ServerSecurityModeConfiguration()
 {
+	Clear();
+}
+
+void ServerSecurityModeConfiguration::Clear()
+{
 	serverSecurityName.clear();
 	serverSecurityPolicy.clear();
 	securityMode = ConfigurationSecurityMode::INVALID;
@@ -256,7 +261,14 @@ SecurityUserTokenPolicy::SecurityUserTokenPolicy() : SecurityUserTokenPolicy(std
 
 SecurityUserTokenPolicy::~SecurityUserTokenPolicy()
 {
+	Clear();
+}
 
+void SecurityUserTokenPolicy::Clear()
+{
+	m_policyId.clear();
+	m_securityPolicyUri.clear();
+	m_securityType = ConfigurationSecurityType::ANONYMOUS;
 }
 
 bool operator==(const SecurityUserTokenPolicy& lhs, const SecurityUserTokenPolicy& rhs)

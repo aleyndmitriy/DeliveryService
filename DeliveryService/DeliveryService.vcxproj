@@ -145,6 +145,8 @@
     <ClCompile Include="Record.cpp" />
     <ClCompile Include="SoftingApplication.cpp" />
     <ClCompile Include="SoftingApplicationSettingsController.cpp" />
+    <ClCompile Include="SoftingApplicationSettingsInitializer.cpp" />
+    <ClCompile Include="SoftingApplicationSettingsPresenter.cpp" />
     <ClCompile Include="SoftingServerCertificateOwnSettings.cpp" />
     <ClCompile Include="SoftingServerCertificatePkiLocationSettings.cpp" />
     <ClCompile Include="SoftingServerInteractor.cpp" />
@@ -172,13 +174,14 @@
     <ClInclude Include="SoftingApplication.h" />
     <ClInclude Include="SoftingApplicationOutput.h" />
     <ClInclude Include="SoftingApplicationSettingsController.h" />
+    <ClInclude Include="SoftingApplicationSettingsInitializer.h" />
+    <ClInclude Include="SoftingApplicationSettingsPresenter.h" />
     <ClInclude Include="SoftingServerCertificateOwnSettings.h" />
     <ClInclude Include="SoftingServerCertificatePkiLocationSettings.h" />
     <ClInclude Include="SoftingServerInteractor.h" />
     <ClInclude Include="SoftingServerInteractorOutput.h" />
     <ClInclude Include="SoftingServerSettingsController.h" />
     <ClInclude Include="SoftingServerSettingsInitializer.h" />
-    <ClInclude Include="SoftingServerSettingsInteractorOutput.h" />
     <ClInclude Include="SoftingServerSettingsPresenter.h" />
     <ClInclude Include="TagInfo.h" />
     <ClInclude Include="Utils.h" />

@@ -8,9 +8,12 @@ class ISoftingServerSettingsViewOutput {
 public:
 	virtual void viewIsReady() = 0;
 	virtual void SetViewInput(std::shared_ptr<ISoftingServerSettingsViewInput> input) = 0;
-	virtual void GetServerConfigurationViewOutput(std::string&& computerName, std::string&& serverName, unsigned int port) = 0;
-	virtual void GetServerSecurityConfigurationViewOutput(std::string&& securityConfiguration) = 0;
-	virtual void GetServerSecurityPolicyIdViewOutput(std::string&& policyId) = 0;
-	virtual void GetServerUserNameViewOutput(std::string&& userName, std::string&& password) = 0;
+	virtual void UpdateComputerName(std::string&& compName) = 0;
+	virtual void UpdatePortNumber(std::string&& strPort) = 0;
+	virtual void UpdateLogin(std::string&& login) = 0;
+	virtual void UpdatePassword(std::string&& password) = 0;
+	virtual void GetServerSecurityConfigurations(std::string&& serverName) = 0;
+	virtual void GetServerSecurityPolicyIds(std::string&& endPoint) = 0;
+	virtual void UpdatePolicyIds(std::string&& policyId) = 0;
 	virtual ~ISoftingServerSettingsViewOutput() {};
 };

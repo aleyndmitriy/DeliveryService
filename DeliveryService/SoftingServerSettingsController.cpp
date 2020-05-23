@@ -18,7 +18,221 @@ SoftingServerSettingsController::~SoftingServerSettingsController()
 void SoftingServerSettingsController::setupInitialState()
 {
 	m_ptrPresenter->SetViewInput(shared_from_this());
+	SendDlgItemMessage(m_hWindow, IDC_COMPUTER_NAME_EDIT, EM_SETSEL, (WPARAM)0, (LPARAM)-1);
+	SendDlgItemMessage(m_hWindow, IDC_COMPUTER_NAME_EDIT, WM_CLEAR, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_PORT_EDIT, EM_SETSEL, (WPARAM)0, (LPARAM)-1);
+	SendDlgItemMessage(m_hWindow, IDC_PORT_EDIT, WM_CLEAR, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)"");
+	SendDlgItemMessage(m_hWindow, IDC_USER_NAME_EDIT, EM_SETSEL, (WPARAM)0, (LPARAM)-1);
+	SendDlgItemMessage(m_hWindow, IDC_USER_NAME_EDIT, WM_CLEAR, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_USER_PASSWORD_EDIT, EM_SETSEL, (WPARAM)0, (LPARAM)-1);
+	SendDlgItemMessage(m_hWindow, IDC_USER_PASSWORD_EDIT, WM_CLEAR, NULL, NULL);
+	m_ptrPresenter->viewIsReady();
 }
+
+void SoftingServerSettingsController::SetNameOfComputer(const std::string& computerName)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_COMPUTER_NAME_EDIT, WM_SETTEXT, NULL, (LPARAM)computerName.c_str());
+	if (!res) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+	}
+	
+}
+
+void SoftingServerSettingsController::SetServerPort(const std::string& serverPort)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_PORT_EDIT, WM_SETTEXT, NULL, (LPARAM)serverPort.c_str());
+	if (!res) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+	}
+}
+
+void SoftingServerSettingsController::SetServerName(const std::string& serverName)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_ADDSTRING, NULL, (LPARAM)serverName.c_str());
+	if (res > CB_ERR) {
+		res = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_SETCURSEL, (WPARAM)res, (LPARAM)NULL);
+	}
+	else {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+	}
+}
+
+void SoftingServerSettingsController::SetUserLogin(const std::string& login)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_USER_NAME_EDIT, WM_SETTEXT, NULL, (LPARAM)login.c_str());
+	if (!res) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+	}
+}
+
+void SoftingServerSettingsController::SetUserPassword(const std::string& password)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_USER_PASSWORD_EDIT, WM_SETTEXT, NULL, (LPARAM)password.c_str());
+	if (!res) {
+		DWORD err = GetLastError();
+		std::string message = GetErrorText(err);
+	}
+}
+
+void SoftingServerSettingsController::ClearSecurityPolicyView()
+{
+	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)"");
+}
+
+void SoftingServerSettingsController::ClearServerConfigurationView()
+{
+	SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)"");
+}
+
+void SoftingServerSettingsController::ClearServerListView()
+{
+	SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)"");
+}
+
+void SoftingServerSettingsController::SetServerEndPoints(std::vector<std::string>&& endPoints)
+{
+	LRESULT res = CB_ERR;
+	size_t index = 0;
+	for(std::vector<std::string>::const_iterator itr = endPoints.cbegin(); itr != endPoints.cend(); itr++)
+	{
+		res = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_ADDSTRING, NULL, (LPARAM)itr->c_str());
+		if (res > CB_ERR) {
+			res = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_SETITEMDATA, (WPARAM)res, (LPARAM)index);
+		}
+		index++;
+	}
+	stopLoading();
+}
+
+void SoftingServerSettingsController::SelectEndPoint(int index)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_GETCOUNT, NULL, NULL);
+	if (res > 0 && index > CB_ERR && index < res) {
+		res = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_SETCURSEL, (WPARAM)index, NULL);
+		if (res == CB_ERR) {
+			DWORD err = GetLastError();
+			std::string message = GetErrorText(err);
+		}
+	}
+}
+
+void SoftingServerSettingsController::SetPolicyIds(std::vector<std::pair<std::string, int> >&& policyIds)
+{
+	LRESULT res = CB_ERR;
+	for (std::vector<std::pair<std::string, int> >::const_iterator itr = policyIds.cbegin(); itr != policyIds.cend(); itr++)
+	{
+		res = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_ADDSTRING, NULL, (LPARAM)itr->first.c_str());
+		if (res > CB_ERR) {
+			res = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_SETITEMDATA, (WPARAM)res, (LPARAM)itr->second);
+		}
+	}
+}
+
+void SoftingServerSettingsController::SelectPolicyId(int index, const std::string& uri)
+{
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_GETCOUNT, NULL, NULL);
+	if (res > 0 && index > CB_ERR && index < res) {
+		res = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_SETCURSEL, (WPARAM)index, NULL);
+		if (res == CB_ERR) {
+			DWORD err = GetLastError();
+			std::string message = GetErrorText(err);
+		}
+		SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)uri.c_str());
+	}
+}
+
+void SoftingServerSettingsController::SetModeConfiguration(const std::string& serverSecurityName, const std::string& serverSecurityPolicy, const std::string& mode)
+{
+	std::string desc = serverSecurityName + std::string("#") + mode + std::string("#") + serverSecurityPolicy;
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_ADDSTRING, NULL, (LPARAM)desc.c_str());
+	if (res > CB_ERR) {
+		res = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_SETCURSEL, (WPARAM)res, (LPARAM)NULL);
+	}
+}
+
+void SoftingServerSettingsController::OnEditComputerNameChanged()
+{
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_COMPUTER_NAME_EDIT, WM_GETTEXTLENGTH, NULL, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT res = SendDlgItemMessage(m_hWindow, IDC_COMPUTER_NAME_EDIT, WM_GETTEXT, (WPARAM)textLength, (LPARAM)str);
+			if (res == textLength - 1) {
+				*(str + res) = '\0';
+				m_ptrPresenter->UpdateComputerName(std::string(str));
+			}
+			free(str);
+		}
+	}
+}
+
+void SoftingServerSettingsController::OnEditPortChanged()
+{
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_PORT_EDIT, WM_GETTEXTLENGTH, NULL, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT res = SendDlgItemMessage(m_hWindow, IDC_PORT_EDIT, WM_GETTEXT, (WPARAM)textLength, (LPARAM)str);
+			if (res == textLength - 1) {
+				*(str + res) = '\0';
+				m_ptrPresenter->UpdatePortNumber(std::string(str));
+			}
+			free(str);
+		}
+	}
+}
+
+
+void SoftingServerSettingsController::OnEditLoginChanged()
+{
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_USER_NAME_EDIT, WM_GETTEXTLENGTH, NULL, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT res = SendDlgItemMessage(m_hWindow, IDC_USER_NAME_EDIT, WM_GETTEXT, (WPARAM)textLength, (LPARAM)str);
+			if (res == textLength - 1) {
+				*(str + res) = '\0';
+				m_ptrPresenter->UpdateLogin(std::string(str));
+			}
+			free(str);
+		}
+	}
+}
+
+void SoftingServerSettingsController::OnEditPasswordChanged()
+{
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_USER_PASSWORD_EDIT, WM_GETTEXTLENGTH, NULL, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT res = SendDlgItemMessage(m_hWindow, IDC_USER_PASSWORD_EDIT, WM_GETTEXT, (WPARAM)textLength, (LPARAM)str);
+			if (res == textLength - 1) {
+				*(str + res) = '\0';
+				m_ptrPresenter->UpdatePassword(std::string(str));
+			}
+			free(str);
+		}
+	}
+}
+
 
 void SoftingServerSettingsController::OnBtnBrowseNetworkTouched()
 {
@@ -50,50 +264,59 @@ void SoftingServerSettingsController::OnBtnCancelTouched()
 void SoftingServerSettingsController::OnCbnSelchangeComboSelectServer()
 {
 	startLoading();
-	readAttributes();
-	getConfigurationsListForSelectedServer();
+	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_GETCURSEL, NULL, NULL);
+	if (res == CB_ERR) {
+		stopLoading();
+		return;
+	}
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_GETLBTEXTLEN, (WPARAM)res, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT len = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_GETLBTEXT, (WPARAM)res, (LPARAM)str);
+			if (len == textLength - 1) {
+				*(str + len) = '\0';
+				m_ptrPresenter->GetServerSecurityConfigurations(std::string(str));
+			}
+			free(str);
+		}
+	}
+	stopLoading();
 }
 
 void SoftingServerSettingsController::OnCbnSelChangeComboConfiguration()
 {
 	startLoading();
-	readAttributes();
-	getPolicyListForSelectedConfiguration();
+	LRESULT index = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_GETCURSEL, NULL, NULL);
+	if (index == CB_ERR) {
+		stopLoading();
+		return;
+	}
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_GETLBTEXTLEN, (WPARAM)index, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT len = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_GETLBTEXT, (WPARAM)index, (LPARAM)str);
+			if (len == textLength - 1) {
+				*(str + len) = '\0';
+				m_ptrPresenter->GetServerSecurityPolicyIds(std::string(str));
+			}
+			free(str);
+		}
+	}
+	stopLoading();
 }
 
 void SoftingServerSettingsController::OnCbnSelChangeComboPolicyId()
 {
-	startLoading();
-	//SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
-	readAttributes();
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
+	
 	//m_pSoftingInteractor->ChooseCurrentTokenPolicy();
 }
 
 
-void SoftingServerSettingsController::getConfigurationsListForSelectedServer()
-{
-	SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_RESETCONTENT, NULL, NULL);
-	m_ptrPresenter->GetServerSecurityConfigurationViewOutput(std::string());
-	//m_endPointsConfigurations.clear();
-	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
-	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
-	m_ptrPresenter->GetServerSecurityPolicyIdViewOutput(std::string());
-	//m_endPointPolicyIds.clear();
-	
-	//m_pSoftingInteractor->ChooseCurrentServer();
-}
-
-void SoftingServerSettingsController::getPolicyListForSelectedConfiguration()
-{
-	LRESULT index = SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_GETCURSEL, NULL, NULL);
-	if (index == CB_ERR) {
-		return;
-	}
-	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
-	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
-
-	//m_pSoftingInteractor->ChooseCurrentEndPoint();
-}
 
 bool SoftingServerSettingsController::readText(int itemId, std::string& text)
 {
@@ -149,52 +372,6 @@ void SoftingServerSettingsController::stopLoading()
 }
 
 
-void SoftingServerSettingsController::readAttributes()
-{
-	std::string compName;
-	if (!readText(IDC_COMPUTER_NAME_EDIT, compName)) {
-		return;
-	}
-	std::string serverPort;
-	if (!readText(IDC_PORT_EDIT, serverPort)) {
-		return;
-	}
-	unsigned int port = std::stoul(serverPort);
-	if (port < 1000) {
-		std::string message = "Port number is not correct!";
-		MessageBox(m_hWindow, TEXT(message.c_str()), "Warning", MB_ICONSTOP);
-		return;
-	}
-
-	std::string serverName;
-	if (!readComboText(IDC_SELECT_SERVER_COMBO, serverName)) {
-		return;
-	}
-
-	m_ptrPresenter->GetServerConfigurationViewOutput(std::move(compName), std::move(serverName), port);
-
-	std::string serverConfig;
-	if (!readComboText(IDC_CONFIGURATION_COMBO, serverConfig)) {
-		m_ptrPresenter->GetServerSecurityConfigurationViewOutput(std::move(serverConfig));
-	}
-
-	std::string serverPolicy;
-	if (!readComboText(IDC_POLICY_ID_COMBO, serverPolicy)) {
-		m_ptrPresenter->GetServerSecurityPolicyIdViewOutput(std::move(serverPolicy));
-	}
-
-	std::string user;
-	if (!readText(IDC_USER_NAME_EDIT, user)) {
-		
-	}
-
-	std::string userPass;
-	if (!readText(IDC_USER_PASSWORD_EDIT, userPass)) {
-		return;
-	}
-	m_ptrPresenter->GetServerUserNameViewOutput(std::move(user), std::move(userPass));
-}
-
 INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam) {
 	static std::shared_ptr<SoftingServerSettingsController> controller;
 	switch (uMsg) {
@@ -208,6 +385,46 @@ INT_PTR WINAPI SoftingSettingDlg_Proc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARA
 	case WM_COMMAND:
 		switch (LOWORD(wParam))
 		{
+		case IDC_COMPUTER_NAME_EDIT:
+			switch (HIWORD(wParam))
+			{
+			case EN_CHANGE:
+				controller->OnEditComputerNameChanged();
+				break;
+			default:
+				break;
+			}
+			break;
+		case IDC_PORT_EDIT:
+			switch (HIWORD(wParam))
+			{
+			case EN_CHANGE:
+				controller->OnEditPortChanged();
+				break;
+			default:
+				break;
+			}
+			break;
+		case IDC_USER_NAME_EDIT:
+			switch (HIWORD(wParam))
+			{
+			case EN_CHANGE:
+				controller->OnEditLoginChanged();
+				break;
+			default:
+				break;
+			}
+			break;
+		case IDC_USER_PASSWORD_EDIT:
+			switch (HIWORD(wParam))
+			{
+			case EN_CHANGE:
+				controller->OnEditPasswordChanged();
+				break;
+			default:
+				break;
+			}
+			break;
 		case IDOK:
 			controller->OnBtnOkTouched();
 			break;

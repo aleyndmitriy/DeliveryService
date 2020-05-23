@@ -97,6 +97,12 @@
     <Filter Include="Исходные файлы\SoftingApplicationSettings\Controller">
       <UniqueIdentifier>{a99b612d-8281-4018-97ca-9591b3d2c8de}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\SoftingApplicationSettings\Presenter">
+      <UniqueIdentifier>{5f1a7c5e-0327-46a9-9fb4-f60175d84a4a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\SoftingApplicationSettings\Initializer">
+      <UniqueIdentifier>{9135fb39-18c1-4d3e-9c97-38cf73699d69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -152,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="SoftingApplicationSettingsController.cpp">
       <Filter>Исходные файлы\SoftingApplicationSettings\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingApplicationSettingsPresenter.cpp">
+      <Filter>Исходные файлы\SoftingApplicationSettings\Presenter</Filter>
+    </ClCompile>
+    <ClCompile Include="SoftingApplicationSettingsInitializer.cpp">
+      <Filter>Исходные файлы\SoftingApplicationSettings\Initializer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,9 +236,6 @@
     <ClInclude Include="Record.h">
       <Filter>Файлы заголовков\SoftingServer</Filter>
     </ClInclude>
-    <ClInclude Include="SoftingServerSettingsInteractorOutput.h">
-      <Filter>Файлы заголовков\MainWindow\Interactor</Filter>
-    </ClInclude>
     <ClInclude Include="ISoftingApplicationSettingsViewInput.h">
       <Filter>Файлы заголовков\SoftingApplicationSettings\Controller</Filter>
     </ClInclude>
@@ -235,6 +244,12 @@
     </ClInclude>
     <ClInclude Include="SoftingApplicationSettingsController.h">
       <Filter>Файлы заголовков\SoftingApplicationSettings\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingApplicationSettingsInitializer.h">
+      <Filter>Файлы заголовков\SoftingApplicationSettings\Initializer</Filter>
+    </ClInclude>
+    <ClInclude Include="SoftingApplicationSettingsPresenter.h">
+      <Filter>Файлы заголовков\SoftingApplicationSettings\Presenter</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

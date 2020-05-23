@@ -18,6 +18,45 @@ SoftingApplicationSettingsController::~SoftingApplicationSettingsController()
 void SoftingApplicationSettingsController::setupInitialState()
 {
 	m_ptrPresenter->SetViewInput(shared_from_this());
+	m_ptrPresenter->viewIsReady();
+}
+
+void SoftingApplicationSettingsController::SetCertificateViewOutput(const std::string& certificate, const std::string& key, const std::string& pass,
+	const std::string& trusted, const std::string& rejected, const std::string& revocated)
+{
+	BOOL bOk = FALSE;
+	DWORD err = 0;
+	std::string message;
+	bOk = SetDlgItemText(m_hWindow, IDC_CERTIFICATE_PATH_EDIT, certificate.c_str());
+	if (!bOk) {
+		err = GetLastError();
+		message = GetErrorText(err);
+	}
+	bOk = SetDlgItemText(m_hWindow, IDC_PRIVATE_KEY_PATH_EDIT, key.c_str());
+	if (!bOk) {
+		err = GetLastError();
+		message = GetErrorText(err);
+	}
+	bOk = SetDlgItemText(m_hWindow, IDC_PASSWORD_EDIT, pass.c_str());
+	if (!bOk) {
+		err = GetLastError();
+		message = GetErrorText(err);
+	}
+	bOk = SetDlgItemText(m_hWindow, IDC_TRUSTED_PATH_EDIT, trusted.c_str());
+	if (!bOk) {
+		err = GetLastError();
+		message = GetErrorText(err);
+	}
+	bOk = SetDlgItemText(m_hWindow, IDC_REJECTED_PATH_EDIT, rejected.c_str());
+	if (!bOk) {
+		err = GetLastError();
+		message = GetErrorText(err);
+	}
+	bOk = SetDlgItemText(m_hWindow, IDC_REVOCATION_PATH_EDIT, revocated.c_str());
+	if (!bOk) {
+		err = GetLastError();
+		message = GetErrorText(err);
+	}
 }
 
 void SoftingApplicationSettingsController::OnBtnOkTouched() {

@@ -13,7 +13,7 @@ public:
 	SoftingApplicationSettingsController(const SoftingApplicationSettingsController& src) = delete;
 	SoftingApplicationSettingsController& operator=(const SoftingApplicationSettingsController& rhs) = delete;
 	~SoftingApplicationSettingsController();
-	void setupInitialState() override;
+	void setupInitialState();
 	void OnBtnOkTouched();
 	void OnBtnCancelTouched();
 	void OnBtnChooseCertificatePathTouched();
@@ -21,6 +21,8 @@ public:
 	void OnBtnChoosePkiTrustedFolderPathTouched();
 	void OnBtnChoosePkiRejectedFolderPathTouched();
 	void OnBtnChoosePkiRevocationFolderPathTouched();
+	void SetCertificateViewOutput(const std::string& certificate, const std::string& key, const std::string& pass,
+		const std::string& trusted, const std::string& rejected, const std::string& revocated) override;
 private:
 	HWND m_hWindow;
 	std::shared_ptr<ISoftingApplicationSettingsViewOutput> m_ptrPresenter;

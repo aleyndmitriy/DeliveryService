@@ -54,6 +54,7 @@ struct ServerSecurityModeConfiguration {
 	ServerSecurityModeConfiguration& operator=(const ServerSecurityModeConfiguration& rhs) = default;
 	ServerSecurityModeConfiguration(ServerSecurityModeConfiguration&& src) = default;
 	ServerSecurityModeConfiguration& operator=(ServerSecurityModeConfiguration&& rhs) = default;
+	void Clear();
 };
 
 bool operator==(const ServerSecurityModeConfiguration& lhs, const ServerSecurityModeConfiguration& rhs);
@@ -83,6 +84,7 @@ struct SecurityUserTokenPolicy {
 	SecurityUserTokenPolicy(SecurityUserTokenPolicy&& src) = default;
 	SecurityUserTokenPolicy& operator=(SecurityUserTokenPolicy&& src) = default;
 	~SecurityUserTokenPolicy();
+	void Clear();
 	std::string m_policyId;
 	std::string m_securityPolicyUri;
 	ConfigurationSecurityType m_securityType;
