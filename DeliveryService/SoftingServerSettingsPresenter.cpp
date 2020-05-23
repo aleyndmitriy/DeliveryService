@@ -64,16 +64,12 @@ void SoftingServerSettingsPresenter::viewIsReady()
 
 			for (int index = 0; index < m_endPointPolicyIds.size(); index++) {
 				if (m_endPointPolicyIds.at(index) == m_connectAttributes->configurationAccess.m_policy) {
-					input->SelectPolicyId(index, m_connectAttributes->configurationAccess.m_policy.m_securityPolicyUri);
+					input->SelectPolicyId(index);
+					std::string attr = GetStringFromSecurityType(m_endPointPolicyIds.at(index).m_securityType) +
+						std::string(" ") + m_endPointPolicyIds.at(index).m_securityPolicyUri;
+					input->SelectPolicyAttribute(attr);
 					break;
 				}
-			}
-			if (m_endPointPolicyIds.empty()) {
-				std::string desc = std::string("Id: ") + m_connectAttributes->configurationAccess.m_policy.m_policyId +
-					std::string("type: ") + GetStringFromSecurityType(m_connectAttributes->configurationAccess.m_policy.m_securityType);
-				input->SetPolicyIds(std::vector<std::string>{ desc });
-				input->SelectPolicyId(0, m_connectAttributes->configurationAccess.m_policy.m_securityPolicyUri);
-				m_endPointPolicyIds.push_back(m_connectAttributes->configurationAccess.m_policy);
 			}
 		}
 		if (!m_connectAttributes->configurationAccess.m_userLogin.m_login.empty()) {
@@ -178,18 +174,26 @@ void SoftingServerSettingsPresenter::GetServerSecurityPolicyIds(std::string&& en
 	}
 }
 
-void SoftingServerSettingsPresenter::UpdatePolicyIds(std::string&& policyId)
+void SoftingServerSettingsPresenter::UpdatePolicyIds(std::string&& policyId, int securityType)
 {
+	ConfigurationSecurityType type = GetTypeFromInt(securityType);
+	std::vector<SecurityUserTokenPolicy>::const_iterator findIterator = std::find_if(m_endPointPolicyIds.cbegin(),
+		m_endPointPolicyIds.cend(),[&](const SecurityUserTokenPolicy& policy) {
+		return (policy.m_policyId == policyId && policy.m_securityType == type); });
+	if (findIterator == m_endPointPolicyIds.cend()) {
+		return;
+	}
 	std::shared_ptr<ISoftingServerSettingsViewInput> input = m_ptrView.lock();
 	if (!input) {
 		return;
 	}
 	if (m_connectAttributes) {
-		size_t posFirstPartOfName = policyId.find('#');
-		if (posFirstPartOfName != std::string::npos) {
-			m_connectAttributes->configurationAccess.m_policy.m_policyId = policyId.substr(0, posFirstPartOfName);
-			
-		}
+		m_connectAttributes->configurationAccess.m_policy.m_policyId = findIterator->m_policyId;
+		m_connectAttributes->configurationAccess.m_policy.m_securityPolicyUri = findIterator->m_securityPolicyUri;
+		m_connectAttributes->configurationAccess.m_policy.m_securityType = findIterator->m_securityType;
+		std::string attr = GetStringFromSecurityType(findIterator->m_securityType) +
+			std::string(" ") + findIterator->m_securityPolicyUri;
+		input->SelectPolicyAttribute(attr);
 	}
 }
 

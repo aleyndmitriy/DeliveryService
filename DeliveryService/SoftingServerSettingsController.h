@@ -31,7 +31,8 @@ public:
 	void SetServerEndPoints(std::vector<std::string>&& endPoints) override;
 	void SelectEndPoint(int index) override;
 	void SetPolicyIds(std::vector<std::pair<std::string, int> >&& policyIds) override;
-	void SelectPolicyId(int index, const std::string& uri) override;
+	void SelectPolicyId(int index) override;
+	void SelectPolicyAttribute(const std::string& attr) override;
 	void SetUserLogin(const std::string& login) override;
 	void SetUserPassword(const std::string& password) override;
 	void ClearSecurityPolicyView() override;

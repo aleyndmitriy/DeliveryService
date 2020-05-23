@@ -142,7 +142,7 @@ void SoftingServerSettingsController::SetPolicyIds(std::vector<std::pair<std::st
 	}
 }
 
-void SoftingServerSettingsController::SelectPolicyId(int index, const std::string& uri)
+void SoftingServerSettingsController::SelectPolicyId(int index)
 {
 	LRESULT res = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_GETCOUNT, NULL, NULL);
 	if (res > 0 && index > CB_ERR && index < res) {
@@ -151,8 +151,12 @@ void SoftingServerSettingsController::SelectPolicyId(int index, const std::strin
 			DWORD err = GetLastError();
 			std::string message = GetErrorText(err);
 		}
-		SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)uri.c_str());
 	}
+}
+
+void SoftingServerSettingsController::SelectPolicyAttribute(const std::string& attr)
+{
+	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)attr.c_str());
 }
 
 void SoftingServerSettingsController::SetModeConfiguration(const std::string& serverSecurityName, const std::string& serverSecurityPolicy, const std::string& mode)
@@ -311,9 +315,27 @@ void SoftingServerSettingsController::OnCbnSelChangeComboConfiguration()
 
 void SoftingServerSettingsController::OnCbnSelChangeComboPolicyId()
 {
-	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)" ");
-	
-	//m_pSoftingInteractor->ChooseCurrentTokenPolicy();
+	startLoading();
+	LRESULT index = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_GETCURSEL, NULL, NULL);
+	if (index == CB_ERR) {
+		stopLoading();
+		return;
+	}
+	int type = (int)SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_GETITEMDATA, (WPARAM)index, NULL);
+	LRESULT textLength = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_GETLBTEXTLEN, (WPARAM)index, NULL);
+	if (textLength > 0) {
+		++textLength;
+		PTCHAR str = (PTCHAR)malloc(sizeof(TCHAR) * textLength);
+		if (str != NULL) {
+			LRESULT len = SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_GETLBTEXT, (WPARAM)index, (LPARAM)str);
+			if (len == textLength - 1) {
+				*(str + len) = '\0';
+				m_ptrPresenter->UpdatePolicyIds(std::string(str),type);
+			}
+			free(str);
+		}
+	}
+	stopLoading();
 }
 
 

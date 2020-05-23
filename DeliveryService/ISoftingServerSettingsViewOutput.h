@@ -14,6 +14,6 @@ public:
 	virtual void UpdatePassword(std::string&& password) = 0;
 	virtual void GetServerSecurityConfigurations(std::string&& serverName) = 0;
 	virtual void GetServerSecurityPolicyIds(std::string&& endPoint) = 0;
-	virtual void UpdatePolicyIds(std::string&& policyId) = 0;
+	virtual void UpdatePolicyIds(std::string&& policyId, int securityType) = 0;
 	virtual ~ISoftingServerSettingsViewOutput() {};
 };

@@ -12,7 +12,8 @@ public:
 	virtual void SetServerEndPoints(std::vector<std::string>&& endPoints) = 0;
 	virtual void SelectEndPoint(int index) = 0;
 	virtual void SetPolicyIds(std::vector<std::pair<std::string,int> >&& policyIds) = 0;
-	virtual void SelectPolicyId(int index, const std::string& uri) = 0;
+	virtual void SelectPolicyId(int index) = 0;
+	virtual void SelectPolicyAttribute(const std::string& attr) = 0;
 	virtual void SetUserLogin(const std::string& login) = 0;
 	virtual void SetUserPassword(const std::string& password) = 0;
 	virtual void ClearSecurityPolicyView() = 0;

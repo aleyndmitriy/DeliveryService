@@ -22,7 +22,7 @@ public:
 	void UpdatePassword(std::string&& password) override;
 	void GetServerSecurityConfigurations(std::string&& serverName) override;
 	void GetServerSecurityPolicyIds(std::string&& endPoint) override;
-	void UpdatePolicyIds(std::string&& policyId) override;
+	void UpdatePolicyIds(std::string&& policyId, int securityType) override;
 	void SendMessageError(std::string&& message) override;
 	void SendWarning(std::string&& message) override;
 	void SendMessageInfo(std::string&& message)override;
