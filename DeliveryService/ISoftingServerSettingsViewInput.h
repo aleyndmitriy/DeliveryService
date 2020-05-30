@@ -9,6 +9,7 @@ public:
 	virtual void SetNameOfComputer(const std::string& computerName) = 0;
 	virtual void SetServerPort(const std::string& serverPort) = 0;
 	virtual void SetServerName(const std::string& serverName) = 0;
+	virtual void SetServerList(std::vector<std::string>&& servers) = 0;
 	virtual void SetServerEndPoints(std::vector<std::string>&& endPoints) = 0;
 	virtual void SelectEndPoint(int index) = 0;
 	virtual void SetPolicyIds(std::vector<std::pair<std::string,int> >&& policyIds) = 0;

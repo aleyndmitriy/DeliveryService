@@ -1,5 +1,6 @@
 #include"SoftingServerSettingsController.h"
 #include"Utils.h"
+#include<shlobj_core.h>
 
 SoftingServerSettingsController::SoftingServerSettingsController(HWND window, std::shared_ptr<ISoftingServerSettingsViewOutput> output): 
 	m_hWindow(window), m_ptrPresenter(output), m_bIsOk(false)
@@ -101,6 +102,22 @@ void SoftingServerSettingsController::ClearServerListView()
 	SendDlgItemMessage(m_hWindow, IDC_CONFIGURATION_COMBO, CB_RESETCONTENT, NULL, NULL);
 	SendDlgItemMessage(m_hWindow, IDC_POLICY_ID_COMBO, CB_RESETCONTENT, NULL, NULL);
 	SendDlgItemMessage(m_hWindow, IDC_LOGIN_TYPE_STATIC, WM_SETTEXT, NULL, (LPARAM)"");
+}
+
+
+void SoftingServerSettingsController::SetServerList(std::vector<std::string>&& servers)
+{
+	LRESULT res = CB_ERR;
+	size_t index = 0;
+	for (std::vector<std::string>::const_iterator itr = servers.cbegin(); itr != servers.cend(); itr++)
+	{
+		res = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_ADDSTRING, NULL, (LPARAM)itr->c_str());
+		if (res > CB_ERR) {
+			res = SendDlgItemMessage(m_hWindow, IDC_SELECT_SERVER_COMBO, CB_SETITEMDATA, (WPARAM)res, (LPARAM)index);
+		}
+		index++;
+	}
+	stopLoading();
 }
 
 void SoftingServerSettingsController::SetServerEndPoints(std::vector<std::string>&& endPoints)
@@ -240,12 +257,28 @@ void SoftingServerSettingsController::OnEditPasswordChanged()
 
 void SoftingServerSettingsController::OnBtnBrowseNetworkTouched()
 {
-
+	TCHAR szPathname[_MAX_PATH];
+	BROWSEINFOA brs;
+	brs.hwndOwner = m_hWindow;
+	brs.pidlRoot = NULL;
+	brs.pszDisplayName = szPathname;
+	brs.lpszTitle = TEXT("Select Computer Name");
+	brs.ulFlags = BIF_NONEWFOLDERBUTTON | BIF_BROWSEFORCOMPUTER;
+	brs.lpfn = NULL;
+	LPITEMIDLIST list = SHBrowseForFolderA(&brs);
+	if (list != NULL) {
+		LRESULT res = SendDlgItemMessage(m_hWindow, IDC_COMPUTER_NAME_EDIT, WM_SETTEXT, NULL, (LPARAM)szPathname);
+		if (!res) {
+			DWORD err = GetLastError();
+			std::string message = GetErrorText(err);
+		}
+	}
 }
 
 void SoftingServerSettingsController::OnBtnDiscoveryServerTouched()
 {
-
+	startLoading();
+	m_ptrPresenter->GetServersList();
 }
 
 void SoftingServerSettingsController::OnBtnGetServerPropertiesTouched()

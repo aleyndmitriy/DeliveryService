@@ -47,11 +47,10 @@ void SoftingApplication::initApplicationDescription()
 		computerName = std::string("localhost");
 	}
 	m_AppDesc.clear();
-	std::string folder = std::string("/ODS/DreamReport/System/");
 	m_AppDesc.setApplicationType(EnumApplicationType_Client);
-	m_AppDesc.setApplicationName(SoftingOPCToolbox5::LocalizedText(_T("DreamReport OpcUa Histotical Items Client"), _T("en")));
-	m_AppDesc.setApplicationUri(_T("urn:") + computerName + folder + std::string(APPLICATION_NAME));	// The ApplicationUri should match with the URI in the application certificate
-	m_AppDesc.setProductUri(_T("urn:") + folder + std::string(APPLICATION_NAME));
+	m_AppDesc.setApplicationName(SoftingOPCToolbox5::LocalizedText(_T("Delivery Service Application"), _T("en")));
+	m_AppDesc.setApplicationUri(_T("urn:") + computerName + std::string("/") + std::string(APPLICATION_NAME));	// The ApplicationUri should match with the URI in the application certificate
+	m_AppDesc.setProductUri(_T("urn:") + std::string(APPLICATION_NAME));
 }
 
 bool SoftingApplication::StartApplication()

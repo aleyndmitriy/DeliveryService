@@ -12,6 +12,7 @@ public:
 	virtual void UpdatePortNumber(std::string&& strPort) = 0;
 	virtual void UpdateLogin(std::string&& login) = 0;
 	virtual void UpdatePassword(std::string&& password) = 0;
+	virtual void GetServersList() = 0;
 	virtual void GetServerSecurityConfigurations(std::string&& serverName) = 0;
 	virtual void GetServerSecurityPolicyIds(std::string&& endPoint) = 0;
 	virtual void UpdatePolicyIds(std::string&& policyId, int securityType) = 0;

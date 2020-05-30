@@ -28,6 +28,7 @@ public:
 	void SetNameOfComputer(const std::string& computerName) override;
 	void SetServerPort(const std::string& serverPort) override;
 	void SetServerName(const std::string& serverName) override;
+	void SetServerList(std::vector<std::string>&& servers) override;
 	void SetServerEndPoints(std::vector<std::string>&& endPoints) override;
 	void SelectEndPoint(int index) override;
 	void SetPolicyIds(std::vector<std::pair<std::string, int> >&& policyIds) override;

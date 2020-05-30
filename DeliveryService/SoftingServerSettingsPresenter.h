@@ -20,6 +20,7 @@ public:
 	void UpdatePortNumber(std::string&& strPort) override;
 	void UpdateLogin(std::string&& login) override;
 	void UpdatePassword(std::string&& password) override;
+	void GetServersList() override;
 	void GetServerSecurityConfigurations(std::string&& serverName) override;
 	void GetServerSecurityPolicyIds(std::string&& endPoint) override;
 	void UpdatePolicyIds(std::string&& policyId, int securityType) override;

@@ -133,6 +133,18 @@ void SoftingServerSettingsPresenter::UpdatePassword(std::string&& password)
 	}
 }
 
+void SoftingServerSettingsPresenter::GetServersList()
+{
+	std::shared_ptr<ISoftingServerSettingsViewInput> input = m_ptrView.lock();
+	if (!input) {
+		return;
+	}
+	input->ClearServerListView();
+	if (m_pSoftingInteractor) {
+		m_pSoftingInteractor->GetServers();
+	}
+}
+
 
 void SoftingServerSettingsPresenter::GetServerSecurityConfigurations(std::string&& serverName)
 {
@@ -194,6 +206,9 @@ void SoftingServerSettingsPresenter::UpdatePolicyIds(std::string&& policyId, int
 		std::string attr = GetStringFromSecurityType(findIterator->m_securityType) +
 			std::string(" ") + findIterator->m_securityPolicyUri;
 		input->SelectPolicyAttribute(attr);
+		if (m_pSoftingInteractor) {
+			m_pSoftingInteractor->ChooseCurrentTokenPolicy();
+		}
 	}
 }
 
@@ -215,16 +230,11 @@ void SoftingServerSettingsPresenter::SendMessageInfo(std::string&& message)
 
 void SoftingServerSettingsPresenter::GetServers(std::vector<std::string>&& servers, std::string&& discoveryUrl)
 {
-	//m_cmbServerName.ResetContent();
-	size_t index = 0;
-	for (std::vector<std::string>::const_iterator itr = servers.cbegin(); itr != servers.cend(); ++itr)
-	{
-		//int pos = m_cmbServerName.AddString(itr->c_str());
-		//m_cmbServerName.SetItemData(pos, index++);
+	std::shared_ptr<ISoftingServerSettingsViewInput> input = m_ptrView.lock();
+	if (!input) {
+		return;
 	}
-
-	m_connectAttributes->configurationMode.serverSecurityName = discoveryUrl;
-	//StopLoading();
+	input->SetServerList(std::move(servers));
 }
 
 void SoftingServerSettingsPresenter::SelectFoundedServer(const std::string& compName, unsigned int port, const std::string& serverName)
