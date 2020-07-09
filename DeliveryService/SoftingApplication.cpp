@@ -2,6 +2,8 @@
 #include "Utils.h"
 #include"Constants.h"
 #include<algorithm>
+#include"XMLSettingsDataSource.h"
+#include<fstream>
 
 SoftingApplication::SoftingApplication() :m_pApp(), m_AppDesc(), m_enumResult(), m_CertificateInfo(), m_pkiStore(), m_pOutputList()
 {
@@ -67,7 +69,14 @@ bool SoftingApplication::StartApplication()
 	}
 
 	m_pApp = SoftingOPCToolbox5::Application::instance();
-	if (!m_pkiStore.trustedFolderPath.empty()) {
+	std::ifstream inStream;
+	inStream.open(SOFTING_SEVER_PKI_LOCATION_XML);
+	if (inStream.is_open()) {
+		XMLSettingsDataSource xmlSource;
+		xmlSource.LoadCertificateSettings(m_CertificateInfo, m_pkiStore, inStream);
+		inStream.close();
+	}
+	if (!m_pkiStore.isEmpty()) {
 		SoftingOPCToolbox5::PkiStoreConfiguration storeConfiguration;
 		storeConfiguration.setCertificateTrustListLocation(m_pkiStore.trustedFolderPath.c_str());
 		storeConfiguration.setCertificateRevocationListLocation(m_pkiStore.revocationFolderPath.c_str());
@@ -94,8 +103,7 @@ bool SoftingApplication::StartApplication()
 
 	if (StatusCode::isGood(m_enumResult))
 	{
-		if (m_CertificateInfo.certificatePath.empty() == false && m_CertificateInfo.privateKeyPath.empty() == false &&
-			m_CertificateInfo.password.empty() == false) {
+		if (!m_CertificateInfo.isEmpty()) {
 			m_enumResult = m_pApp->setInstanceCertificate(m_CertificateInfo.certificatePath.c_str(), m_CertificateInfo.privateKeyPath.c_str(), m_CertificateInfo.password.c_str());
 			if (StatusCode::isBad(m_enumResult))
 			{

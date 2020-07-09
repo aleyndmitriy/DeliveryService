@@ -1,8 +1,8 @@
 #include"SoftingServerSettingsPresenter.h"
 #include<algorithm>
 
-SoftingServerSettingsPresenter::SoftingServerSettingsPresenter( std::shared_ptr<ConnectionAttributes> connectionAttributes, std::shared_ptr<DataTypeAttributes> dataAttributes):
-m_ptrView(), m_connectAttributes(connectionAttributes), m_dataAttributes(dataAttributes), m_pSoftingInteractor(std::make_unique<SoftingServerInteractor>(connectionAttributes,dataAttributes)),
+SoftingServerSettingsPresenter::SoftingServerSettingsPresenter():
+m_ptrView(), m_connectAttributes(nullptr), m_dataAttributes(nullptr), m_pSoftingInteractor(nullptr),
 m_endPointsConfigurations(), m_endPointPolicyIds(), m_aggregates()
 {
 
@@ -280,3 +280,21 @@ void SoftingServerSettingsPresenter::GetAggregates(std::vector<std::pair<std::st
 
 }
 
+void SoftingServerSettingsPresenter::GetRecords(std::map<std::string, std::vector<Record> >&& recordsData)
+{
+
+}
+
+void SoftingServerSettingsPresenter::GetTags(std::set<TagInfo>&& tagsData)
+{
+
+}
+
+void SoftingServerSettingsPresenter::GetNewConnectionGuide(std::string&& uuid)
+{
+
+}
+void SoftingServerSettingsPresenter::CloseConnectionWithGuide(std::string&& uuid)
+{
+
+}

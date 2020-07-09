@@ -22,6 +22,7 @@ public:
 	void CreateConnectionMenu(POINT pt);
 	void CreateServiceMenu(POINT pt);
 	void CreateSoftingServerCertificateLocationsDialog();
+	void CreateSoftingServerEndPointsSettingsDialog();
 private:
 	HINSTANCE m_hInstance;
 	HWND m_hWnd;

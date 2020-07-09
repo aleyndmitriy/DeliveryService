@@ -13,6 +13,7 @@ struct SoftingServerCertificatePkiLocationSettings
 	SoftingServerCertificatePkiLocationSettings(SoftingServerCertificatePkiLocationSettings&& src) = default;
 	SoftingServerCertificatePkiLocationSettings& operator=(SoftingServerCertificatePkiLocationSettings&& src) = default;
 	~SoftingServerCertificatePkiLocationSettings();
+	bool isEmpty();
 };
 
 bool operator== (const SoftingServerCertificatePkiLocationSettings & lhs, const SoftingServerCertificatePkiLocationSettings & rhs);

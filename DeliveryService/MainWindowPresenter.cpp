@@ -1,5 +1,6 @@
 #include"MainWindowPresenter.h"
 #include"SoftingServerSettingsInitializer.h"
+#include"SoftingApplicationSettingsInitializer.h"
 #include"Utils.h"
 #include"Constants.h"
 #include<functional>
@@ -98,14 +99,23 @@ void MainWindowPresenter::CreateServiceSettingsModule()
 {
 	std::shared_ptr<IMainWindowViewInput> view = m_ptrView.lock();
 	if (view) {
-		int res = SoftingServerSettingsInitializer::CreateModule(view->GetAppInstance(),view->GetWindowHandle(), shared_from_this());
+		int res = SoftingServerSettingsInitializer::CreateModule(view->GetAppInstance(),view->GetWindowHandle());
 		if (res) {
 
 		}
 	}
 }
 
+void MainWindowPresenter::CreateApplicationSettingsModule()
+{
+	std::shared_ptr<IMainWindowViewInput> view = m_ptrView.lock();
+	if (view) {
+		int res = SoftingApplicationSettingsInitializer::CreateModule(view->GetAppInstance(), view->GetWindowHandle());
+		if (res) {
 
+		}
+	}
+}
 
 VOID CALLBACK GetIPList(PTP_CALLBACK_INSTANCE pInstance, PVOID pvContext)
 {
@@ -139,4 +149,69 @@ VOID CALLBACK GetIPList(PTP_CALLBACK_INSTANCE pInstance, PVOID pvContext)
 	else {
 		presenter->GetErrorInfo(std::string("Can't get Ip interfaces"));
 	}
+}
+
+void MainWindowPresenter::SendMessageError(std::string&& message)
+{
+
+}
+
+void MainWindowPresenter::SendWarning(std::string&& message)
+{
+
+}
+
+void MainWindowPresenter::SendMessageInfo(std::string&& message)
+{
+
+}
+
+void MainWindowPresenter::GetServers(std::vector<std::string>&& servers, std::string&& discoveryUrl)
+{
+
+}
+
+void MainWindowPresenter::SelectFoundedServer(const std::string& compName, unsigned int port, const std::string& serverName)
+{
+
+}
+
+void MainWindowPresenter::ChooseSecurityConfiguration()
+{
+
+}
+
+void MainWindowPresenter::GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& endPoints)
+{
+
+}
+
+void MainWindowPresenter::GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds)
+{
+
+}
+
+void MainWindowPresenter::GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates)
+{
+
+}
+
+void MainWindowPresenter::GetRecords(std::map<std::string, std::vector<Record> >&& recordsData)
+{
+
+}
+
+void MainWindowPresenter::GetTags(std::set<TagInfo>&& tagsData)
+{
+
+}
+
+void MainWindowPresenter::GetNewConnectionGuide(std::string&& uuid)
+{
+
+}
+
+void MainWindowPresenter::CloseConnectionWithGuide(std::string&& uuid)
+{
+
 }

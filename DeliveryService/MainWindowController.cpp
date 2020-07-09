@@ -180,6 +180,10 @@ void MainWindowController::CreateServiceMenu(POINT pt)
 
 void MainWindowController::CreateSoftingServerCertificateLocationsDialog()
 {
-	m_ptrPresenter->CreateServiceSettingsModule();
+	m_ptrPresenter->CreateApplicationSettingsModule();
 }
 
+void MainWindowController::CreateSoftingServerEndPointsSettingsDialog()
+{
+	m_ptrPresenter->CreateServiceSettingsModule();
+}

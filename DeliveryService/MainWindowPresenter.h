@@ -18,9 +18,23 @@ public:
 	void SetViewInput(std::shared_ptr<IMainWindowViewInput> input) override;
 	void GetIpAddress() override;
 	void CreateServiceSettingsModule() override;
+	void CreateApplicationSettingsModule() override;
 	void GetMessageInfo(std::string message);
 	void GetErrorInfo(std::string error);
 	void GetIpAddressList();
+	void SendMessageError(std::string&& message) override;
+	void SendWarning(std::string&& message) override;
+	void SendMessageInfo(std::string&& message)override;
+	void GetServers(std::vector<std::string>&& servers, std::string&& discoveryUrl) override;
+	void SelectFoundedServer(const std::string& compName, unsigned int port, const std::string& serverName) override;
+	void ChooseSecurityConfiguration() override;
+	void GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& endPoints) override;
+	void GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds) override;
+	void GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates) override;
+	void GetRecords(std::map<std::string, std::vector<Record> >&& recordsData) override;
+	void GetTags(std::set<TagInfo>&& tagsData) override;
+	void GetNewConnectionGuide(std::string&& uuid) override;
+	void CloseConnectionWithGuide(std::string&& uuid) override;
 private:
 	std::weak_ptr<IMainWindowViewInput> m_ptrView;
 	PTP_POOL m_pool = NULL;

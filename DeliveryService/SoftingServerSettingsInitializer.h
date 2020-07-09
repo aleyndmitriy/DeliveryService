@@ -6,5 +6,5 @@
 class SoftingServerSettingsInitializer final
 {
 public:
-	static int CreateModule(HINSTANCE hInstance,  HWND parent, std::shared_ptr<ConnectionAttributes> connectionAttributes, std::shared_ptr<DataTypeAttributes> dataAttributes);
+	static int CreateModule(HINSTANCE hInstance,  HWND parent);
 };

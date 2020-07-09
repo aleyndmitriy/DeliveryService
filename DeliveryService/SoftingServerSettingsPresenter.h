@@ -7,8 +7,7 @@ class SoftingServerSettingsPresenter final: public std::enable_shared_from_this<
 	public SoftingServerInteractorOutput
 {
 public:
-	SoftingServerSettingsPresenter(std::shared_ptr<ConnectionAttributes> connectionAttributes, std::shared_ptr<DataTypeAttributes> dataAttributes);
-	SoftingServerSettingsPresenter() = delete;
+	SoftingServerSettingsPresenter();
 	SoftingServerSettingsPresenter(const SoftingServerSettingsPresenter& src) = delete;
 	SoftingServerSettingsPresenter& operator=(const SoftingServerSettingsPresenter& src) = delete;
 	SoftingServerSettingsPresenter(SoftingServerSettingsPresenter&& src) = delete;
@@ -33,6 +32,10 @@ public:
 	void GetEndPoints(std::vector<ServerSecurityModeConfiguration>&& endPoints) override;
 	void GetPolicyIds(std::vector<SecurityUserTokenPolicy>&& policyIds) override;
 	void GetAggregates(std::vector<std::pair<std::string, int> >&& aggregates) override;
+	void GetRecords(std::map<std::string, std::vector<Record> >&& recordsData) override;
+	void GetTags(std::set<TagInfo>&& tagsData) override;
+	void GetNewConnectionGuide(std::string&& uuid) override;
+	void CloseConnectionWithGuide(std::string&& uuid) override;
 private:
 	std::weak_ptr<ISoftingServerSettingsViewInput> m_ptrView;
 	std::shared_ptr<ConnectionAttributes> m_connectAttributes;

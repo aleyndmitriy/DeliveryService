@@ -8,5 +8,6 @@ public:
 	virtual void SetViewInput(std::shared_ptr<IMainWindowViewInput> input) = 0;
 	virtual void GetIpAddress() = 0;
 	virtual void CreateServiceSettingsModule() = 0;
+	virtual void CreateApplicationSettingsModule() = 0;
 	virtual ~IMainWindowViewOutput() {};
 };

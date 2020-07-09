@@ -6,8 +6,7 @@
 class SoftingApplicationSettingsPresenter final : public std::enable_shared_from_this<SoftingApplicationSettingsPresenter>, public ISoftingApplicationSettingsViewOutput
 {
 public:
-	SoftingApplicationSettingsPresenter(std::shared_ptr<SoftingServerCertificateOwnSettings> certificateSettings, std::shared_ptr<SoftingServerCertificatePkiLocationSettings> pkiLocation);
-	SoftingApplicationSettingsPresenter() = delete;
+	SoftingApplicationSettingsPresenter();
 	SoftingApplicationSettingsPresenter(const SoftingApplicationSettingsPresenter& src) = delete;
 	SoftingApplicationSettingsPresenter& operator=(const SoftingApplicationSettingsPresenter& src) = delete;
 	SoftingApplicationSettingsPresenter(SoftingApplicationSettingsPresenter&& src) = delete;

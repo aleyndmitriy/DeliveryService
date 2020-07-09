@@ -13,6 +13,7 @@ struct SoftingServerCertificateOwnSettings
 	SoftingServerCertificateOwnSettings(SoftingServerCertificateOwnSettings&& src) = default;
 	SoftingServerCertificateOwnSettings& operator=(SoftingServerCertificateOwnSettings&& src) = default;
 	~SoftingServerCertificateOwnSettings();
+	bool isEmpty();
 };
 
 bool operator==(const SoftingServerCertificateOwnSettings& lhs, const SoftingServerCertificateOwnSettings& rhs);

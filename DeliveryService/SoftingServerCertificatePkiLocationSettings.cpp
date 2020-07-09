@@ -8,8 +8,21 @@ SoftingServerCertificatePkiLocationSettings::SoftingServerCertificatePkiLocation
 
 SoftingServerCertificatePkiLocationSettings::~SoftingServerCertificatePkiLocationSettings()
 {
-
+	trustedFolderPath.clear();
+	rejectedFolderPath.clear();
+	revocationFolderPath.clear();
 }
+
+bool SoftingServerCertificatePkiLocationSettings::isEmpty()
+{
+	if (trustedFolderPath.empty() || rejectedFolderPath.empty() || revocationFolderPath.empty()) {
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
 
 bool operator== (const SoftingServerCertificatePkiLocationSettings& lhs, const SoftingServerCertificatePkiLocationSettings& rhs)
 {

@@ -85,7 +85,6 @@ void SoftingServerInteractor::OpenConnectionWithUUID(const std::string& connecti
 		if (output) {
 			std::string message("Invalid endpoint URL!");
 			output->SendMessageError(std::move(message));
-			output->GetNewConnectionGuide(std::string());
 		}
 	}
 	SoftingOPCToolbox5::Client::SessionPtr session = SoftingOPCToolbox5::Client::Session::create();
@@ -96,7 +95,6 @@ void SoftingServerInteractor::OpenConnectionWithUUID(const std::string& connecti
 		if (output) {
 			std::string message = std::string("Set URL to the session failed: ") + std::string(getEnumStatusCodeString(result));
 			output->SendMessageError(std::move(message));
-			output->GetNewConnectionGuide(std::string());
 		}
 		return;
 	}
@@ -128,7 +126,6 @@ void SoftingServerInteractor::OpenConnectionWithUUID(const std::string& connecti
 				if (output) {
 					std::string message = std::string("Can not load certificate file: ");
 					output->SendMessageError(std::move(message));
-					output->GetNewConnectionGuide(std::string());
 				}
 				return;
 			}
@@ -139,7 +136,6 @@ void SoftingServerInteractor::OpenConnectionWithUUID(const std::string& connecti
 				if (output) {
 					std::string message = std::string("Failed to load users private key: ") + std::string(getEnumStatusCodeString(result));
 					output->SendMessageError(std::move(message));
-					output->GetNewConnectionGuide(std::string());
 				}
 				return;
 			}
@@ -161,7 +157,6 @@ void SoftingServerInteractor::OpenConnectionWithUUID(const std::string& connecti
 			if (output) {
 				std::string message = std::string("Adding session failed: ") + std::string(getEnumStatusCodeString(result));
 				output->SendMessageError(std::move(message));
-				output->GetNewConnectionGuide(std::string());
 			}
 			return;
 		}
@@ -173,7 +168,6 @@ void SoftingServerInteractor::OpenConnectionWithUUID(const std::string& connecti
 				if (output) {
 					std::string message = std::string("Connecting to the server failed: ") + std::string(getEnumStatusCodeString(result));
 					output->SendMessageError(std::move(message));
-					output->GetNewConnectionGuide(std::string());
 				}
 				return;
 			}
@@ -202,7 +196,6 @@ void SoftingServerInteractor::CloseConnectionWithUUID(const std::string& connect
 			if (output) {
 				std::string message = std::string("Can not disconnect session: ") + std::string(getEnumStatusCodeString(result));
 				output->SendMessageError(std::move(message));
-				output->GetNewConnectionGuide(std::string());
 			}
 		}
 		result = SoftingApplication::Instance().RemoveSession(iter->second);
@@ -212,7 +205,6 @@ void SoftingServerInteractor::CloseConnectionWithUUID(const std::string& connect
 			if (output) {
 				std::string message = std::string("Can not remove session: ") + std::string(getEnumStatusCodeString(result));
 				output->SendMessageError(std::move(message));
-				output->GetNewConnectionGuide(std::string());
 			}
 		}
 		iter->second.reset();
@@ -543,7 +535,6 @@ void SoftingServerInteractor::ChooseCurrentTokenPolicy()
 {
 	std::shared_ptr<SoftingServerInteractorOutput> output = m_pOutput.lock();
 	if (!m_selectedEndPointDescription) {
-
 		return;
 	}
 	std::vector<SoftingOPCToolbox5::UserTokenPolicy> userTokens = m_selectedEndPointDescription->getUserIdentityTokens();
@@ -955,10 +946,9 @@ void SoftingServerInteractor::getProcessedHistoricalValues(const std::vector<Sof
 	}
 }
 
-void SoftingServerInteractor::GetRecords(std::map<std::string, std::vector<Record> >& tagsData, const SYSTEMTIME& startTime, const SYSTEMTIME& endTime,
+void SoftingServerInteractor::GetRecords(const SYSTEMTIME& startTime, const SYSTEMTIME& endTime,
 	const std::map<std::string, std::vector<std::string> >& fullPaths, const std::string& connectionID)
 {
-	tagsData.clear();
 	std::shared_ptr<SoftingServerInteractorOutput> output = m_pOutput.lock();
 	std::map<std::string, SoftingOPCToolbox5::Client::SessionPtr>::iterator iter = m_sessionsList.find(connectionID);
 	if (iter != m_sessionsList.end()) {
@@ -1030,12 +1020,16 @@ void SoftingServerInteractor::GetRecords(std::map<std::string, std::vector<Recor
 				return;
 			}
 			std::map<std::string, std::vector<std::string> >::const_iterator pathIterator = fullPaths.cbegin();
+			std::map<std::string, std::vector<Record> > recordsData;
 			for (std::map<std::string, std::vector<SoftingOPCToolbox5::DataValue> >::const_iterator historyResultsIterator = historicalValuesOfNodes.cbegin(); historyResultsIterator != historicalValuesOfNodes.cend();
 				++historyResultsIterator) {
 				std::pair<std::string, std::vector<Record> > pair = std::make_pair<std::string, std::vector<Record> >(std::string(pathIterator->first), std::vector<Record>{});
 				std::transform(historyResultsIterator->second.cbegin(), historyResultsIterator->second.cend(), std::back_inserter(pair.second), mapRecordFromDataValue);
 				++pathIterator;
-				tagsData.insert(pair);
+				recordsData.insert(pair);
+			}
+			if (output) {
+				output->GetRecords(std::move(recordsData));
 			}
 		}
 	}
@@ -1047,14 +1041,15 @@ void SoftingServerInteractor::GetRecords(std::map<std::string, std::vector<Recor
 	}
 }
 
-void SoftingServerInteractor::GetTags(std::set<TagInfo>& tags, std::vector<std::string>& receivedTags, const std::string& connectionID)
+void SoftingServerInteractor::GetTags(const std::vector<std::string>& tagsPath, const std::string& connectionID)
 {
-	tags.clear();
+	std::set<TagInfo> tags;
+	std::vector<std::string> receivedTags(tagsPath);
+	std::shared_ptr<SoftingServerInteractorOutput> output = m_pOutput.lock();
 	std::map<std::string, SoftingOPCToolbox5::Client::SessionPtr>::iterator iter = m_sessionsList.find(connectionID);
 	if (iter != m_sessionsList.end()) {
 		if (iter->second.isNull() || iter->second->isConnected() == false)
 		{
-			std::shared_ptr<SoftingServerInteractorOutput> output = m_pOutput.lock();
 			if (output) {
 				std::string message("The session is not connected... connect it before calling this function!");
 				output->SendWarning(std::move(message));
@@ -1064,6 +1059,9 @@ void SoftingServerInteractor::GetTags(std::set<TagInfo>& tags, std::vector<std::
 		SoftingOPCToolbox5::NodeId devicesNode;
 		devicesNode.setNull();
 		getTags(devicesNode, tags, receivedTags, iter->second);
+		if (output) {
+			output->GetTags(std::move(tags));
+		}
 	}
 	else {
 		std::shared_ptr<SoftingServerInteractorOutput> output = m_pOutput.lock();

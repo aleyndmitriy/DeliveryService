@@ -1,10 +1,6 @@
 #pragma once
 #include"SoftingApplication.h"
-#include<map>
-#include<set>
 #include"SoftingServerInteractorOutput.h"
-#include"TagInfo.h"
-#include "Record.h"
 
 class SoftingServerInteractor: public SoftingApplicationOutput, public std::enable_shared_from_this<SoftingServerInteractor> {
 public:
@@ -25,8 +21,8 @@ public:
 	void CloseConnectionWithUUID(const std::string& connectionID);
 	void OpenConnection();
 	void TestConnection();
-	void GetTags(std::set<TagInfo>& tags, std::vector<std::string>& tagsPath, const std::string& connectionID);
-	void GetRecords(std::map<std::string, std::vector<Record> >& tagsData, const SYSTEMTIME& startTime, const SYSTEMTIME& endTime,
+	void GetTags(const std::vector<std::string>& tagsPath, const std::string& connectionID);
+	void GetRecords(const SYSTEMTIME& startTime, const SYSTEMTIME& endTime,
 		const std::map<std::string, std::vector<std::string> >& fullPaths, const std::string& connectionID);
 	void SendMessageError(std::string&& message) override;
 	void SendWarning(std::string&& message) override;

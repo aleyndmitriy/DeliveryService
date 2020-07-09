@@ -105,7 +105,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			controller->CreateSoftingServerCertificateLocationsDialog();
 			break;
 		case ID_SOFTINGSERVERSETTINGS_ENDPOINTSSETTINGS:
-			
+			controller->CreateSoftingServerEndPointsSettingsDialog();
 			break;
 		default:
 			return DefWindowProc(hWnd, message, wParam, lParam);
